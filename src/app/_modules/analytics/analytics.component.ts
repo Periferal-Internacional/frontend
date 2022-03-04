@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-analytics',
+  selector: 'analytics',
   templateUrl: './analytics.component.html',
   styleUrls: ['./analytics.component.css']
 })

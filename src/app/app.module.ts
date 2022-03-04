@@ -3,25 +3,26 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthComponent } from './_modules/auth/auth.component';
-import { DashboardComponent } from './_modules/dashboard/dashboard.component';
-import { VideogameComponent } from './_modules/videogame/videogame.component';
-import { AnalyticsComponent } from './_modules/analytics/analytics.component';
-import { LandingComponent } from './_modules/landing/landing.component';
 import { ComponentsModule } from './_components/components.module';
+import { AnalyticsModule } from './_modules/analytics/analytics.module';
+import { AuthModule } from './_modules/auth/auth.module';
+import { DashboardModule } from './_modules/dashboard/dashboard.module';
+import { LandingModule } from './_modules/landing/landing.module';
+import { VideogameModule } from './_modules/videogame/videogame.module';
+
 @NgModule({
   declarations: [
-    AppComponent,
-    AuthComponent,
-    DashboardComponent,
-    VideogameComponent,
-    AnalyticsComponent,
-    LandingComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    AnalyticsModule,
+    AuthModule,
+    DashboardModule,
+    LandingModule,
+    VideogameModule
   ],
   providers: [],
   bootstrap: [AppComponent]
