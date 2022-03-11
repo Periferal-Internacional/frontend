@@ -5,6 +5,8 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -13,9 +15,11 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
   ],
   imports: [
     CommonModule
+    , RouterModule
     , NzMenuModule
     , NzIconModule
     , NzToolTipModule
+    , NzListModule
   ],
   exports: [
     NavbarComponent, 
