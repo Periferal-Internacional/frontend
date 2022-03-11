@@ -1,1 +1,16 @@
-<router-outlet></router-outlet>
+<nz-layout>
+    <nz-sider nzCollapsible nzWidth="200px">
+      <navbar></navbar>
+    </nz-sider>
+    <nz-layout>
+      <nz-header></nz-header>
+      <nz-content>
+        <nz-breadcrumb>
+          <nz-breadcrumb-item>User</nz-breadcrumb-item>
+          <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
+        </nz-breadcrumb>
+        <router-outlet></router-outlet>
+      </nz-content>
+      <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+    </nz-layout>
+  </nz-layout>
