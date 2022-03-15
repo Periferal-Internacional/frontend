@@ -51,7 +51,7 @@ registerLocaleData(en);
     NzToolTipModule,
     NzGridModule,
     NzTableModule,
-    NzDividerModule
+    NzDividerModule,
     DeliverablesModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
