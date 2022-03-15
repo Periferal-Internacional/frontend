@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 // COMPONENT
 import { AnalyticsComponent } from './analytics.component';
-import { AnalyticsStatisticComponent } from '../analytics-statistic/analytics-statistic.component';
-import { AnalyticsPeopleComponent } from '../analytics-people/analytics-people.component';
+import { AnalyticsStatisticComponent } from './analytics-statistic/analytics-statistic.component';
+import { AnalyticsPeopleComponent } from './analytics-people/analytics-people.component';
 
 // EXTERNAL LIBRARIES
 import { ComponentsModule } from 'src/app/_components/components.module';
