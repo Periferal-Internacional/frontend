@@ -9,7 +9,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class ApiService {
 
-  baseUrl = "https://perinte.herokuapp.com/"
+  baseUrl = "https://perinte.herokuapp.com/";
+  
   constructor(private http: HttpClient) { }
   
   getPipe(path:string) {

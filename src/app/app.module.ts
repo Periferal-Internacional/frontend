@@ -21,6 +21,8 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { DeliverablesModule } from './_modules/deliverables/deliverables.module';
+
 registerLocaleData(en);
 
 @NgModule({
@@ -43,7 +45,8 @@ registerLocaleData(en);
     NzBreadCrumbModule,
     NzMenuModule,
     NzIconModule,
-    NzToolTipModule
+    NzToolTipModule,
+    DeliverablesModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
