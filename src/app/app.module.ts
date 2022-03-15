@@ -24,7 +24,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
-
+import { DeliverablesModule } from './_modules/deliverables/deliverables.module';
 
 registerLocaleData(en);
 
@@ -52,8 +52,7 @@ registerLocaleData(en);
     NzGridModule,
     NzTableModule,
     NzDividerModule
-    
-    // NzMenuModule
+    DeliverablesModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
