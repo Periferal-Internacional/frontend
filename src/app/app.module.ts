@@ -21,13 +21,16 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { DeliverablesModule } from './_modules/deliverables/deliverables.module';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,9 @@ registerLocaleData(en);
     NzMenuModule,
     NzIconModule,
     NzToolTipModule,
+    NzGridModule,
+    NzTableModule,
+    NzDividerModule
     DeliverablesModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
