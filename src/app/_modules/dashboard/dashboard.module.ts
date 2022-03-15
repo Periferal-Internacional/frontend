@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 // COMPONENT
 import { DashboardComponent } from './dashboard.component';
+import { CircleProgressComponent } from './circle-progress/circle-progress.component';
 
 // EXTERNAL LIBRARIES
 import { ComponentsModule } from 'src/app/_components/components.module';
@@ -11,10 +12,12 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzProgressModule } from 'ng-zorro-antd/progress';
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    CircleProgressComponent
   ],
   imports: [
     CommonModule,
@@ -23,10 +26,12 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
     NzBreadCrumbModule,
     NzMenuModule,
     NzIconModule,
-    NzToolTipModule
+    NzToolTipModule,
+    NzProgressModule
   ],
   exports: [
-    DashboardComponent
+    DashboardComponent,
+    CircleProgressComponent
   ]
 })
 export class DashboardModule { }
