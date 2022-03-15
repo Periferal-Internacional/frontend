@@ -7,6 +7,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { RouterModule } from '@angular/router';
+import { NzProgressModule } from 'ng-zorro-antd/progress';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { RouterModule } from '@angular/router';
     , NzIconModule
     , NzToolTipModule
     , NzListModule
+    , NzProgressModule
   ],
   exports: [
     NavbarComponent, 

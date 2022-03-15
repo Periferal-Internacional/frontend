@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AnalyticsComponent } from './analytics.component';
 import { AnalyticsStatisticComponent } from '../analytics-statistic/analytics-statistic.component';
 import { AnalyticsPeopleComponent } from '../analytics-people/analytics-people.component';
+
 // EXTERNAL LIBRARIES
 import { ComponentsModule } from 'src/app/_components/components.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
@@ -16,6 +17,7 @@ import { NzStatisticModule } from 'ng-zorro-antd/statistic';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzProgressModule } from 'ng-zorro-antd/progress';
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
     NzStatisticModule,
     NzGridModule,
     NzTableModule,
-    NzDividerModule
+    NzDividerModule,
+    NzProgressModule
   ],
   exports: [AnalyticsComponent, AnalyticsStatisticComponent, AnalyticsPeopleComponent]
 })
