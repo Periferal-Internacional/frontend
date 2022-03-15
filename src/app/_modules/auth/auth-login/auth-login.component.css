@@ -1,0 +1,22 @@
+
+      .login-form {
+        max-width: 500px;
+        justify-content: center;
+        text-align: center
+      }
+
+      .login-form-margin {
+        margin-bottom: 16px;
+      }
+
+      .login-form-forgot {
+        text-align: center;
+        width: 100%;
+      }
+
+      .login-form-button {
+        width: 100%;
+      }
+
+
+    
