@@ -1,4 +1,4 @@
-<nz-layout *ngIf="tab != ''">
+<nz-layout *ngIf="tab != '' && tab != 'auth'">
     <nz-sider nzCollapsible nzWidth="200px">
       <navbar></navbar>
     </nz-sider>
@@ -11,8 +11,8 @@
         </nz-breadcrumb>
         <router-outlet></router-outlet>
       </nz-content>
-      <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+      <nz-footer>Periférica Internacional ©2022 Implementado con Angular</nz-footer>
     </nz-layout>
 </nz-layout>
 
-<router-outlet *ngIf="tab == ''"></router-outlet>
+<router-outlet *ngIf="tab == '' || tab == 'auth'"></router-outlet>
