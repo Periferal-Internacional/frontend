@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DeliverablesComponent } from './deliverables.component';
-
+import { ComponentsModule } from 'src/app/_components/components.module';
 
 
 @NgModule({
@@ -9,7 +9,8 @@ import { DeliverablesComponent } from './deliverables.component';
     DeliverablesComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ComponentsModule
   ],
   exports: [ DeliverablesComponent ]
 })
