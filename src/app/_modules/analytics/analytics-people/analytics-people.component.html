@@ -1,18 +1,18 @@
-    <nz-table #basicTable [nzData]="listOfData">
+    <nz-table *ngIf="users" #basicTable [nzData]="users">
       <thead>
         <tr>
           <th>Nombre</th>
-          <th>Edad</th>
+          <th>Posición</th>
           <th>Planta</th>
           <th>Entregas</th>
           <th>Nivel Video Juego</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of basicTable.data">
-          <td>{{ data.name }}</td>
-          <td>{{ data.age }}</td>
-          <td>{{ data.address }}</td>
+        <tr *ngFor="let user of users; index as i">
+          <td>{{user.name}} {{user.lastName1}}</td>
+          <td>{{user.position}}</td>
+          <td>{{plants[i]}}</td>
           <td>
             <a>JI</a>
             <nz-divider nzType="vertical"></nz-divider>
