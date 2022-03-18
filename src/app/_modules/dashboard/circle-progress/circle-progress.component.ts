@@ -22,4 +22,8 @@ export class CircleProgressComponent implements OnInit {
       this.color = "success";
     }
   }
+
+  format1 = (): string => `MTY`;
+  format2 = (): string => `CDMX`;
+  format3 = (): string => `León`;
 }

@@ -10,3 +10,7 @@ nz-header {
   nz-footer {
     text-align: center;
   }
+
+body {
+  background-color: #F7F7F7;
+}
