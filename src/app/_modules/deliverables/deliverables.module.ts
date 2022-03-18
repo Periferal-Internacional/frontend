@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DeliverablesComponent } from './deliverables.component';
-import { FileUploadComponent } from './file-upload/file-upload.component';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
 
 
 
 @NgModule({
   declarations: [
-    DeliverablesComponent,
-    FileUploadComponent
+    DeliverablesComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NzUploadModule
   ],
-  exports: [ DeliverablesComponent ]
+  exports: [ 
+    DeliverablesComponent
+
+  ]
 })
 export class DeliverablesModule { }

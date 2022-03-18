@@ -1,25 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { fakeAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DeliverablesComponent } from './deliverables.component';
 
-describe('DeliverablesComponent', () => {
+describe('FileUploadComponent', () => {
   let component: DeliverablesComponent;
   let fixture: ComponentFixture<DeliverablesComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(fakeAsync(() => {
+    TestBed.configureTestingModule({
       declarations: [ DeliverablesComponent ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(DeliverablesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }));
 
-  it('should create', () => {
+  it('should compile', () => {
     expect(component).toBeTruthy();
   });
 });
