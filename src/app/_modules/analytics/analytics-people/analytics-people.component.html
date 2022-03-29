@@ -10,9 +10,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let user of users; index as i">
-          <td>{{user.name}} {{user.lastName1}}</td>
-          <td>{{user.position}}</td>
-          <td>{{plants[i]}}</td>
+          <td>{{user.user.name}} {{user.user.lastName1}}</td>
+          <td>{{user.user.position}}</td>
+          <td>{{user.plant.city}}</td>
           <td>
             <a>JI</a>
             <nz-divider nzType="vertical"></nz-divider>
