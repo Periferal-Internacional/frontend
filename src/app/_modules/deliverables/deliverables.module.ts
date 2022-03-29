@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DeliverablesComponent } from './deliverables.component';
+import { ComponentsModule } from 'src/app/_components/components.module';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
-
-
 
 @NgModule({
   declarations: [
@@ -11,6 +10,7 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
   ],
   imports: [
     CommonModule,
+    ComponentsModule,
     NzUploadModule
   ],
   exports: [ 

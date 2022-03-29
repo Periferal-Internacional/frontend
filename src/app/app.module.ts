@@ -17,7 +17,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
@@ -25,12 +24,13 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { DeliverablesModule } from './_modules/deliverables/deliverables.module';
+import { HelpModule } from './_modules/help/help.module';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -45,14 +45,14 @@ registerLocaleData(en);
     HttpClientModule,
     BrowserAnimationsModule,
     NzLayoutModule,
-    NzBreadCrumbModule,
     NzMenuModule,
     NzIconModule,
     NzToolTipModule,
     NzGridModule,
     NzTableModule,
     NzDividerModule,
-    DeliverablesModule
+    DeliverablesModule,
+    HelpModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

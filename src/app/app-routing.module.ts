@@ -34,7 +34,7 @@ const routes: Routes = [
     'component': HelpComponent
   },
   {
-    'path': 'deliverables',
+    'path':  'deliverables',
     'component': DeliverablesComponent
   }
 

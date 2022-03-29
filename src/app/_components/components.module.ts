@@ -8,11 +8,14 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { RouterModule } from '@angular/router';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    LeaderboardComponent
+    LeaderboardComponent,
+    BreadcrumbComponent
   ],
   imports: [
     CommonModule
@@ -22,9 +25,11 @@ import { NzProgressModule } from 'ng-zorro-antd/progress';
     , NzToolTipModule
     , NzListModule
     , NzProgressModule
+    , NzBreadCrumbModule
   ],
   exports: [
     NavbarComponent, 
-    LeaderboardComponent]
+    LeaderboardComponent,
+    BreadcrumbComponent]
 })
 export class ComponentsModule { }
