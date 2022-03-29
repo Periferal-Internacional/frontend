@@ -7,7 +7,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [AuthComponent, AuthLoginComponent],
@@ -18,7 +18,8 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     FormsModule,
     ReactiveFormsModule,
     NzButtonModule,
-    NzIconModule
+    NzIconModule,
+    RouterModule
   ],
   exports: [
     AuthComponent,

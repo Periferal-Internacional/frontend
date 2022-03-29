@@ -1,0 +1,19 @@
+.cuerpo{
+    background-color: rgb(235, 205, 205);
+}
+
+.bg_login{
+    margin: auto;
+    width: 25%;
+    background-color: rgb(206, 133, 133);
+    padding: 20px;
+    border-radius: 20px;
+
+}
+
+.imagen{
+    margin: auto;
+    width: 25%;
+    padding: 20px;
+    border-radius: 20px;
+}
