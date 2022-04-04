@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'breadcrumb',
-  templateUrl: './breadcrumb.component.html',
-  styleUrls: ['./breadcrumb.component.css']
+  selector: 'app-manager',
+  templateUrl: './manager.component.html',
+  styleUrls: ['./manager.component.css']
 })
-export class BreadcrumbComponent implements OnInit {
+export class ManagerComponent implements OnInit {
   tabs : string[] = [];
   constructor() { }
 
@@ -21,5 +21,6 @@ export class BreadcrumbComponent implements OnInit {
     for (var i = 0; i < temp.length; i++) {
       this.tabs.push(temp[i].charAt(0).toUpperCase() + temp[i].slice(1));
     }
+    console.log(this.tabs);
   }
 }
