@@ -21,6 +21,5 @@ export class ManagerComponent implements OnInit {
     for (var i = 0; i < temp.length; i++) {
       this.tabs.push(temp[i].charAt(0).toUpperCase() + temp[i].slice(1));
     }
-    console.log(this.tabs);
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../../../_services/api.service';
 
 @Component({
   selector: 'questions-list',
@@ -6,10 +7,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./questions-list.component.css']
 })
 export class QuestionsListComponent implements OnInit {
+  data : Array<any> = [];
 
-  constructor() { }
+  expandSet = new Set<number>();
+  onExpandChange(id: number, checked: boolean): void {
+    if (checked) {
+      this.expandSet.add(id);
+    } else {
+      this.expandSet.delete(id);
+    }
+  }
+  
+  constructor(
+    private api : ApiService
+  ) { }
 
   ngOnInit(): void {
+    this.fetchData();
   }
-
+  
+  fetchData() {
+    this.api.getPipe("questions").subscribe((resp : {[key: string] : any}) => {
+      this.data = resp.questions;
+    });
+  }
 }
