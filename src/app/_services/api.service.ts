@@ -20,4 +20,8 @@ export class ApiService {
   postPipe(path:string, request:JSON) {
     return this.http.post<JSON>(this.baseUrl + path, request);
   }
+
+  deletePipe(path:string) {
+    return this.http.delete(this.baseUrl + path);
+  }
 }

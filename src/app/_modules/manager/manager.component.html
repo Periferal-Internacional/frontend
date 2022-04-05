@@ -1,0 +1,20 @@
+<breadcrumb [inputTabs]="inputTabs"></breadcrumb>
+<div class="inner-content">
+  <h1> Manager</h1>
+  <ul nz-menu nzMode="horizontal">
+    <li nz-menu-item routerLink="/manager/questions" (click)="updateTab('Questions')">
+      <i nz-icon nzType="form"></i>
+      Preguntas
+    </li>
+    <li nz-menu-item routerLink="/manager/plants" (click)="updateTab('Plants')">
+      <i nz-icon nzType="control"></i>
+      Plantas
+    </li>
+  </ul>
+
+  <questions *ngIf="qShow"></questions>
+  
+  <plants *ngIf="pShow"></plants>
+  <div style="margin: 30%;"></div>
+  <!-- <plants></plants> -->
+</div>

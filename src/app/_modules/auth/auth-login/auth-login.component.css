@@ -7,6 +7,7 @@
 
       .login-form-margin {
         margin-bottom: 16px;
+        
       }
 
       .login-form-forgot {
@@ -18,5 +19,6 @@
         width: 100%;
       }
 
-
-    
+.disabled {
+  color: green;
+}

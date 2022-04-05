@@ -1,7 +1,15 @@
+nz-progress {
+  margin-right: 8px;
+  margin-bottom: 8px;
+  display: inline-block;
+}
 
-      nz-progress {
-        margin-right: 8px;
-        margin-bottom: 8px;
-        display: inline-block;
-      }
-    
+nz-card {
+  border-radius: 20px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

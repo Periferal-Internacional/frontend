@@ -6,36 +6,55 @@ import { DashboardComponent } from './_modules/dashboard/dashboard.component';
 import { DeliverablesComponent } from './_modules/deliverables/deliverables.component';
 import { HelpComponent } from './_modules/help/help.component';
 import { LandingComponent } from './_modules/landing/landing.component';
+import { ManagerComponent } from './_modules/manager/manager.component';
+import { PlantsComponent } from './_modules/manager/plants/plants.component';
+import { QuestionsComponent } from './_modules/manager/questions/questions.component';
 import { VideogameComponent } from './_modules/videogame/videogame.component';
 
 const routes: Routes = [
   {
-    'path': '',
-    'component': LandingComponent
+    path: '', component: LandingComponent
   },
   {
-    'path': 'auth',
-    'component': AuthComponent,
+    path: 'auth', component: AuthComponent,
   },
   {
-    'path': 'videogame',
-    'component': VideogameComponent
+    path: 'videogame', component: VideogameComponent
   },
   {
-    'path': 'dashboard',
-    'component': DashboardComponent
+    path: 'dashboard', component: DashboardComponent
   },
   {
-    'path': 'analytics',
-    'component': AnalyticsComponent
+    path: 'analytics', component: AnalyticsComponent
   },
   {
-    'path': 'help',
-    'component': HelpComponent
+    path: 'help', component: HelpComponent
   },
   {
-    'path':  'deliverables',
-    'component': DeliverablesComponent
+    path:  'deliverables', component: DeliverablesComponent
+  },
+  {
+    path: 'manager',
+    component: ManagerComponent,
+    children: [
+      {
+        path: '', 
+        redirectTo: 'manager/questions',
+        pathMatch: 'full'
+        // component: QuestionsComponent
+      },
+      {
+        path: 'plants', 
+        // redirectTo: 'manager/plants',
+        // pathMatch: 'full'
+        component: PlantsComponent
+      },
+      {
+        path: 'questions', 
+        // redirectTo: 'manager/questions',
+        component: QuestionsComponent
+      }
+    ]
   }
 
 ];

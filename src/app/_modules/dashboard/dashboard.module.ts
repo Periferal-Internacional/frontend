@@ -13,6 +13,8 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzStatisticModule } from 'ng-zorro-antd/statistic';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { NzProgressModule } from 'ng-zorro-antd/progress';
     NzMenuModule,
     NzIconModule,
     NzToolTipModule,
-    NzProgressModule
+    NzProgressModule,
+    NzCardModule,
+    NzStatisticModule
   ],
   exports: [
     DashboardComponent,
