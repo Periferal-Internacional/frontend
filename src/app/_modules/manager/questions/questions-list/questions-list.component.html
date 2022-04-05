@@ -1,4 +1,4 @@
-<nz-table #basicTable *ngIf="data" [nzData]="data">
+<nz-table #questions *ngIf="data" [nzData]="data">
     <thead>
       <tr>
         <th>Más Información</th>
@@ -9,16 +9,20 @@
       </tr>
     </thead>
     <tbody>
-        <ng-container *ngFor="let data of basicTable.data">
+        <ng-container *ngFor="let data of questions.data">
             <tr>
                 <td [nzExpand]="expandSet.has(data.id)" (nzExpandChange)="onExpandChange(data.id, $event)"></td>
                 <td>{{ data.prompt }}</td>
-                <td>{{ data.question_type}}</td>
-                <td>{{ data.xp}}</td>
+                <td>{{ data.question_type }}</td>
+                <td>{{ data.xp }}</td>
                 <td>
                 <a><i nz-icon nzType="edit" nzTheme="outline"></i></a>
                 <nz-divider nzType="vertical"></nz-divider>
-                <a><i nz-icon nzType="delete" nzTheme="outline"></i></a>
+                <a nz-popconfirm
+                nzPopconfirmPlacement="top"
+                nzPopconfirmTitle="¿Estás seguro que quieres borrarla?"
+                (nzOnConfirm)="deleteQuestion(data.id)"><i nz-icon nzType="delete" nzTheme="outline"></i></a>
+                
                 </td>
             </tr>
             <tr [nzExpand]="expandSet.has(data.id)">

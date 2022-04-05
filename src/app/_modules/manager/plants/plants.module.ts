@@ -4,6 +4,10 @@ import { PlantsComponent } from './plants.component';
 import { PlantsListComponent } from './plants-list/plants-list.component';
 import { PlantsFormComponent } from './plants-form/plants-form.component';
 
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 
 @NgModule({
   declarations: [
@@ -12,7 +16,11 @@ import { PlantsFormComponent } from './plants-form/plants-form.component';
     PlantsFormComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NzTableModule,
+    NzDividerModule,
+    NzIconModule,
+    NzPopconfirmModule
   ],
   exports: [
     PlantsComponent,

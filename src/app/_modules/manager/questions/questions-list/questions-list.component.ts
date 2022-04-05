@@ -10,6 +10,7 @@ export class QuestionsListComponent implements OnInit {
   data : Array<any> = [];
 
   expandSet = new Set<number>();
+  
   onExpandChange(id: number, checked: boolean): void {
     if (checked) {
       this.expandSet.add(id);
@@ -29,6 +30,12 @@ export class QuestionsListComponent implements OnInit {
   fetchData() {
     this.api.getPipe("questions").subscribe((resp : {[key: string] : any}) => {
       this.data = resp.questions;
+    });
+  }
+
+  deleteQuestion(id : number) {
+    this.api.deletePipe("questions/" + id).subscribe(resp => {
+      this.fetchData();
     });
   }
 }

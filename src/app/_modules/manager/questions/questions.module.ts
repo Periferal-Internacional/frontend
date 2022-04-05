@@ -7,6 +7,7 @@ import { QuestionsListComponent } from './questions-list/questions-list.componen
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     CommonModule,
     NzTableModule,
     NzDividerModule,
-    NzIconModule
+    NzIconModule,
+    NzPopconfirmModule
   ],
   exports: [
     QuestionsComponent,

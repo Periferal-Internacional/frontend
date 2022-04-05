@@ -38,10 +38,21 @@ const routes: Routes = [
     component: ManagerComponent,
     children: [
       {
-        path: 'plants', component: PlantsComponent
+        path: '', 
+        redirectTo: 'manager/questions',
+        pathMatch: 'full'
+        // component: QuestionsComponent
       },
       {
-        path: 'questions', component: QuestionsComponent
+        path: 'plants', 
+        // redirectTo: 'manager/plants',
+        // pathMatch: 'full'
+        component: PlantsComponent
+      },
+      {
+        path: 'questions', 
+        // redirectTo: 'manager/questions',
+        component: QuestionsComponent
       }
     ]
   }

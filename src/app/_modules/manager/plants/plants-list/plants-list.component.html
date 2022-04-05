@@ -1,1 +1,25 @@
-<p>plants-list works!</p>
+<nz-table #plants *ngIf="data" [nzData]="data">
+    <thead>
+      <tr>
+        <th>Ciudad</th>
+        <th>País</th>
+        <th>Modificar</th>
+      </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let data of plants.data">
+            <tr>
+                <td>{{ data.city }}</td>
+                <td>{{ data.country}}</td>
+                <td>
+                <a><i nz-icon nzType="edit" nzTheme="outline"></i></a>
+                <nz-divider nzType="vertical"></nz-divider>
+                <a nz-popconfirm
+                nzPopconfirmPlacement="top"
+                nzPopconfirmTitle="¿Estás seguro que quieres borrarla?"
+                (nzOnConfirm)="deletePlant(data.id)"><i nz-icon nzType="delete" nzTheme="outline"></i></a>
+                </td>
+            </tr>
+        </ng-container>
+    </tbody>
+  </nz-table>
