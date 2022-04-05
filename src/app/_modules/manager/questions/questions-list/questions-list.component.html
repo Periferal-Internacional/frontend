@@ -1,0 +1,44 @@
+<nz-table #questions *ngIf="data" [nzData]="data">
+    <thead>
+      <tr>
+        <th>Más Información</th>
+        <th>Pregunta</th>
+        <th>Tipo de Pregunta</th>
+        <th>Experiencia</th>
+        <th>Modificar</th>
+      </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let data of questions.data">
+            <tr>
+                <td [nzExpand]="expandSet.has(data.id)" (nzExpandChange)="onExpandChange(data.id, $event)"></td>
+                <td>{{ data.prompt }}</td>
+                <td>{{ data.question_type }}</td>
+                <td>{{ data.xp }}</td>
+                <td>
+                <a><i nz-icon nzType="edit" nzTheme="outline"></i></a>
+                <nz-divider nzType="vertical"></nz-divider>
+                <a nz-popconfirm
+                nzPopconfirmPlacement="top"
+                nzPopconfirmTitle="¿Estás seguro que quieres borrarla?"
+                (nzOnConfirm)="deleteQuestion(data.id)"><i nz-icon nzType="delete" nzTheme="outline"></i></a>
+                
+                </td>
+            </tr>
+            <tr [nzExpand]="expandSet.has(data.id)">
+                <span>
+                    <strong>Respuestas:</strong> 
+                    <ul>
+                        <li *ngFor="let answer of data.answers">
+                            {{answer}}
+                        </li>
+                    </ul>
+                </span>
+                <span>
+                    <strong>Respuesta Correcta:</strong> 
+                    {{ data.right_answer }}
+                </span>
+            </tr>
+        </ng-container>
+    </tbody>
+  </nz-table>

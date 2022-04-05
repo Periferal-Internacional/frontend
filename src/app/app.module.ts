@@ -25,6 +25,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { DeliverablesModule } from './_modules/deliverables/deliverables.module';
 import { HelpModule } from './_modules/help/help.module';
+import { ManagerModule } from './_modules/manager/manager.module';
 
 registerLocaleData(en);
 
@@ -52,7 +53,8 @@ registerLocaleData(en);
     NzTableModule,
     NzDividerModule,
     DeliverablesModule,
-    HelpModule
+    HelpModule,
+    ManagerModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
