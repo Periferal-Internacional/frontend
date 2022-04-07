@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PlantsComponent } from './plants.component';
 import { PlantsListComponent } from './plants-list/plants-list.component';
 import { PlantsFormComponent } from './plants-form/plants-form.component';
 
@@ -8,10 +7,12 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
 
 @NgModule({
   declarations: [
-    PlantsComponent,
     PlantsListComponent,
     PlantsFormComponent
   ],
@@ -20,10 +21,13 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
     NzTableModule,
     NzDividerModule,
     NzIconModule,
-    NzPopconfirmModule
+    NzPopconfirmModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NzFormModule,
+    NzInputModule
   ],
   exports: [
-    PlantsComponent,
     PlantsListComponent,
     PlantsFormComponent
   ]

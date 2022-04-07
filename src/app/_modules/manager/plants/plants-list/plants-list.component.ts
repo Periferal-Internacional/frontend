@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { ApiService } from '../../../../_services/api.service';
 
 @Component({
@@ -6,11 +6,12 @@ import { ApiService } from '../../../../_services/api.service';
   templateUrl: './plants-list.component.html',
   styleUrls: ['./plants-list.component.css']
 })
-export class PlantsListComponent implements OnInit {
+export class PlantsListComponent implements OnInit, OnChanges {
   data : any = [];
-  
+  @Input() refetch : Boolean = false;
+  @Output() fetched = new EventEmitter<Boolean>();
   expandSet = new Set<number>();
-
+  
   onExpandChange(id: number, checked: boolean): void {
     if (checked) {
       this.expandSet.add(id);
@@ -27,10 +28,16 @@ export class PlantsListComponent implements OnInit {
     this.fetchData();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.refetch.currentValue == true) {
+      this.fetchData();
+      this.fetched.emit(true);
+    }
+  }
+
   fetchData() {
     this.api.getPipe("plants").subscribe(resp => {
       this.data = resp;
-      console.log(resp);
     });
   }
 
