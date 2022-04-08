@@ -1,12 +1,13 @@
 <breadcrumb></breadcrumb>
-<p>deliverables works!</p>
-<div class="dropzone" dropzone (hovered)="toggleHover($event)" (dropped)="onDrop($event)" [class.hovering]="isHovering">
-
+<div class="inner-content">
+<h1>Deliverables</h1>
+<div class="dropzone" dropzone (hovered)="toggleHover($any($event))" (dropped)="onDrop($any($event))">
+<!-- <div class="dropzone" dropzone (hovered)="toggleHover($any($event))" (dropped)="onDrop($any($event)) [class.hovering]="isHovering""> -->
   <h3> Arrastra los Archivos aqui</h3>
 
   <div>
       <label>
-          <input type="file" (change)="onDrop($event.target.files)">
+          <input type="file" (change)="onDrop($any($event).target.files)">
       </label>
   </div>
 </div>
@@ -17,5 +18,6 @@
 </div>
 
 <div *ngFor="let file of files">
-  <upload-task [file]="file"></upload-task>
+  <!--<upload-task [file]="file"></upload-task>-->
+</div>
 </div>

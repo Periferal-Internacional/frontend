@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "dragndrop-4f92c"
+  },
+  "targets": {
+    "dragndrop-4f92c": {
+      "hosting": {
+        "frontend": [
+          "dragndrop-4f92c"
+        ]
+      }
+    }
+  }
+}

@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeliverablesComponent implements OnInit {
 
-    isHovering: boolean;
+    
+    /**isHovering: boolean;*/
     files: File[] = [];
 
     constructor() { }
@@ -16,13 +17,13 @@ export class DeliverablesComponent implements OnInit {
     }
 
     toggleHover(event: boolean) {
-        this.isHovering = event;
+        /**this.isHovering = event;*/
     }
 
     onDrop(files: FileList) {
         for (let i = 0; i < files.length; i++) {
             console.log('deliverables adding file: ', files.item(i));
-            this.files.push(files.item(i));
+            /**this.files.push(files.item(i));*/
         }
     }
 
