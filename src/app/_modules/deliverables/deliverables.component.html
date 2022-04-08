@@ -1,11 +1,21 @@
 <breadcrumb></breadcrumb>
 <p>deliverables works!</p>
-<nz-upload
-nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-[nzHeaders]="{ authorization: 'authorization-text' }"
->
-<button nz-button>
-  <i nz-icon nzType="upload"></i>
-  Click to Upload
-</button>
-</nz-upload>
+<div class="dropzone" dropzone (hovered)="toggleHover($event)" (dropped)="onDrop($event)" [class.hovering]="isHovering">
+
+  <h3> Arrastra los Archivos aqui</h3>
+
+  <div>
+      <label>
+          <input type="file" (change)="onDrop($event.target.files)">
+      </label>
+  </div>
+</div>
+
+<div *ngIf="files.length > 0">
+  Archivos
+  <hr>
+</div>
+
+<div *ngFor="let file of files">
+  <upload-task [file]="file"></upload-task>
+</div>
