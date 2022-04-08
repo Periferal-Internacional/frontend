@@ -14,3 +14,9 @@
 .dropzone.hovering {
     border: 10px dashed #f12424;
 }
+
+.inner-content {
+    padding: 24px;
+    background-color: #F7F7F7;
+    min-height: 360px;
+}
