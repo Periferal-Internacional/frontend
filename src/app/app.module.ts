@@ -26,10 +26,10 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { DeliverablesModule } from './_modules/deliverables/deliverables.module';
 import { HelpModule } from './_modules/help/help.module';
 import { ManagerModule } from './_modules/manager/manager.module';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
-import { environment } from '../environments/environment';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
-import { provideStorage,getStorage } from '@angular/fire/storage';
+// import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+// import { environment } from '../environments/environment';
+// import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+// import { provideStorage,getStorage } from '@angular/fire/storage';
 
 registerLocaleData(en);
 
@@ -58,10 +58,10 @@ registerLocaleData(en);
     NzDividerModule,
     DeliverablesModule,
     HelpModule,
-    ManagerModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore()),
-    provideStorage(() => getStorage())
+    ManagerModule
+    // provideFirebaseApp(() => initializeApp(environment.firebase)),
+    // provideFirestore(() => getFirestore()),
+    // provideStorage(() => getStorage())
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
