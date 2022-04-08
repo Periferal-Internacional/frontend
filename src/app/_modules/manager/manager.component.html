@@ -15,7 +15,6 @@
 
   <questions-list *ngIf="qShow" [refetch]="refetch" (fetched)="changeStatus()"></questions-list>
   <plants-list *ngIf="pShow" [refetch]="refetch" (fetched)="changeStatus()"></plants-list>
-
   <nz-drawer
       [nzClosable]="false"
       [nzVisible]="visible"
