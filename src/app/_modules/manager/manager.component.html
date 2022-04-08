@@ -12,6 +12,19 @@
     </li>
   </ul>
 
-  <div style="margin: 30%;"></div>
-  <!-- <plants></plants> -->
+  <questions-list *ngIf="qShow" [refetch]="refetch" (fetched)="changeStatus()"></questions-list>
+  <plants-list *ngIf="pShow" [refetch]="refetch" (fetched)="changeStatus()"></plants-list>
+  <nz-drawer
+      [nzClosable]="false"
+      [nzVisible]="visible"
+      nzPlacement="right"
+      nzTitle="Crear {{ objType }}"
+      (nzOnClose)="close()"
+      [nzWidth]="640"
+    >
+      <ng-container *nzDrawerContent>
+        <questions-form *ngIf="qShow" (onSubmit)="submitSuccess()"> </questions-form>
+        <plants-form *ngIf="pShow" (onSubmit)="submitSuccess()"></plants-form>
+      </ng-container>
+    </nz-drawer>
 </div>
