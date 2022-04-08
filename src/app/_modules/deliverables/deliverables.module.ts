@@ -13,6 +13,9 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
     ComponentsModule,
     NzUploadModule
   ],
-  exports: [ DeliverablesComponent ]
+  exports: [ 
+    DeliverablesComponent
+
+  ]
 })
 export class DeliverablesModule { }
