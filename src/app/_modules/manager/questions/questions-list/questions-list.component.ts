@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { ApiService } from '../../../../_services/api.service';
 
 @Component({
@@ -8,7 +8,8 @@ import { ApiService } from '../../../../_services/api.service';
 })
 export class QuestionsListComponent implements OnInit {
   data : Array<any> = [];
-
+  @Input() refetch : Boolean = false;
+  @Output() fetched = new EventEmitter<Boolean>();
   expandSet = new Set<number>();
   
   onExpandChange(id: number, checked: boolean): void {
@@ -25,6 +26,13 @@ export class QuestionsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData();
+  }
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.refetch.currentValue == true) {
+      this.fetchData();
+      this.fetched.emit(true);
+    }
   }
   
   fetchData() {

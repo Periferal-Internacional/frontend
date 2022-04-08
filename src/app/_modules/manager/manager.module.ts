@@ -6,6 +6,10 @@ import { PlantsModule } from './plants/plants.module';
 import { ComponentsModule } from '../../_components/components.module';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { RouterModule } from '@angular/router';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +21,10 @@ import { RouterModule } from '@angular/router';
     QuestionsModule,
     PlantsModule,
     ComponentsModule,
-    NzMenuModule
+    NzMenuModule,
+    NzButtonModule,
+    NzIconModule,
+    NzDrawerModule
   ],
   exports: [ManagerComponent]
 })

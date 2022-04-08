@@ -1,1 +1,65 @@
-<p>questions-form works!</p>
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="prompt">Pregunta</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Ingresa una pregunta">
+        <input nz-input formControlName="prompt" id="prompt" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="question_type">Tipo de Pregunta</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Ingresa el tipo de pregunta">
+        <nz-select formControlName="question_type" id="question_type">
+          <nz-option nzValue="JI" nzLabel="Job Instructions"></nz-option>
+          <nz-option nzValue="JR" nzLabel="Job Relations"></nz-option>
+          <nz-option nzValue="JM" nzLabel="Job Methods"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item *ngFor="let control of listOfControl; let i = index">
+      <nz-form-label nzRequired [nzXs]="24" [nzSm]="4" *ngIf="i === 0" [nzFor]="control.controlInstance">
+        Respuestas
+      </nz-form-label>
+      <nz-form-control
+        [nzXs]="24"
+        [nzSm]="20"
+        [nzOffset]="i === 0 ? 0 : 4"
+        nzErrorTip="Por favor ingrese una respuesta"
+      >
+        <input
+          class="answer-input"
+          nz-input
+          placeholder="Respuesta #{{i + 1}}"
+          [attr.id]="control.id"
+          [formControlName]="control.controlInstance"
+        />
+        <i nz-icon nzType="minus-circle-o" class="dynamic-delete-button" (click)="removeField(control, $event)"></i>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 20, offset: 4 }">
+        <button nz-button nzType="dashed" class="add-button" (click)="addField($event)">
+          <i nz-icon nzType="plus"></i>
+          Add field
+        </button>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="right_answer">Respuesta correcta</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Ingresa la respuesta correcta a la pregunta">
+        <nz-select formControlName="right_answer" id="right_answer">
+          <nz-option *ngFor="let control of listOfControl" nzValue="{{this.validateForm.get(control.controlInstance)?.value}}" nzLabel="{{this.validateForm.get(control.controlInstance)?.value}}"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="xp">Experiencia</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Ingresa la cantidad de experiencia que la pregunta dará">
+        <input type="number" formControlName="xp" id="xp" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item nz-row class="register-area">
+      <nz-form-control [nzSpan]="14" [nzOffset]="6">
+        <button nz-button nzType="primary">Register</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>

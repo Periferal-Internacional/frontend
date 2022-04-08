@@ -9,8 +9,11 @@ export class ManagerComponent implements OnInit {
   tabs : string[] = [];
   inputTabs : string[] = [];
 
-  qShow = false;
+  qShow = true;
   pShow = false;
+  visible = false;
+  objType = "";
+  refetch = false;
   constructor() { }
 
   ngOnInit(): void {
@@ -55,5 +58,28 @@ export class ManagerComponent implements OnInit {
     else {
       this.tabs = tab;
     }
+  }
+
+  open() {
+    this.visible = true;
+
+    if (this.qShow) {
+      this.objType = "Pregunta";
+    } else if (this.pShow) {
+      this.objType = "Planta";
+    }
+  }
+
+  close() {
+    this.visible = false;
+  }
+
+  changeStatus() {
+    this.refetch = false;
+  }
+
+  submitSuccess() {
+    this.close();
+    this.refetch = true;
   }
 }
