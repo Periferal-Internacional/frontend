@@ -1,5 +1,5 @@
 <span *ngFor="let user of users; index as i">
-    <small>{{user.name}} {{user.lastName1}}</small>
+    <small>{{user.user.name}} {{user.user.lastName1}}</small>
     <nz-progress [nzPercent]="percentages[i]" nzStrokeColor="{{getColor(i)}}"></nz-progress>
 </span>
 <!-- <small>Jim Green</small>
