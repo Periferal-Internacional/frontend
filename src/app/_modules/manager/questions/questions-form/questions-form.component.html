@@ -47,7 +47,7 @@
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="right_answer">Respuesta correcta</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Ingresa la respuesta correcta a la pregunta">
         <nz-select formControlName="right_answer" id="right_answer">
-          <nz-option *ngFor="let control of listOfControl" nzValue="{{control.controlInstance}}" nzLabel="{{control.controlInstance}}"></nz-option>
+          <nz-option *ngFor="let control of listOfControl" nzValue="{{this.validateForm.get(control.controlInstance)?.value}}" nzLabel="{{this.validateForm.get(control.controlInstance)?.value}}"></nz-option>
         </nz-select>
       </nz-form-control>
     </nz-form-item>
