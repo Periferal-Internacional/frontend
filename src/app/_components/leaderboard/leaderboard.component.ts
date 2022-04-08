@@ -9,7 +9,7 @@ import { ApiService } from 'src/app/_services/api.service';
 export class LeaderboardComponent implements OnInit {
   tabs : string[] = [];
   users : any[] = [];
-  percentages: number[] = [100, 75, 64, 47, 15];
+  percentages: number[] = [100, 81, 79, 65, 60, 50, 45, 40, 37, 25, 10, 0];
   constructor(
     private api : ApiService
   ) { }

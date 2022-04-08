@@ -2,31 +2,16 @@
 <div class="inner-content">
   <h1> Manager</h1>
   <ul nz-menu nzMode="horizontal">
-    <li nz-menu-item (click)="updateTab('Questions')">
+    <li nz-menu-item routerLink="/manager/questions" (click)="updateTab('Questions')">
       <i nz-icon nzType="form"></i>
       Preguntas
     </li>
-    <li nz-menu-item (click)="updateTab('Plants')">
+    <li nz-menu-item routerLink="/manager/plants" (click)="updateTab('Plants')">
       <i nz-icon nzType="control"></i>
       Plantas
     </li>
-    <button nz-button nzType="primary" (click)="open()" nzShape="circle"><i nz-icon nzType="plus"></i></button>
   </ul>
 
-  <questions-list *ngIf="qShow" [refetch]="refetch" (fetched)="changeStatus()"></questions-list>
-  <plants-list *ngIf="pShow" [refetch]="refetch" (fetched)="changeStatus()"></plants-list>
-
-  <nz-drawer
-      [nzClosable]="false"
-      [nzVisible]="visible"
-      nzPlacement="right"
-      nzTitle="Crear {{ objType }}"
-      (nzOnClose)="close()"
-      [nzWidth]="640"
-    >
-      <ng-container *nzDrawerContent>
-        <questions-form *ngIf="qShow" (onSubmit)="submitSuccess()"> </questions-form>
-        <plants-form *ngIf="pShow" (onSubmit)="submitSuccess()"></plants-form>
-      </ng-container>
-    </nz-drawer>
+  <div style="margin: 30%;"></div>
+  <!-- <plants></plants> -->
 </div>
