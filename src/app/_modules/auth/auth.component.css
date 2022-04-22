@@ -1,14 +1,13 @@
 .cuerpo{
-    background-color: rgb(235, 205, 205);
+    background-image: url("src/assets/img/Diapositiva1.jpg");
 }
 
 .bg_login{
     margin: auto;
     width: 25%;
-    background-color: rgb(206, 133, 133);
+    background-color: rgb(225, 174, 174);
     padding: 20px;
     border-radius: 20px;
-
 }
 
 .imagen{
