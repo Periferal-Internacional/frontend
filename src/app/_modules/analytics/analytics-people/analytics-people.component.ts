@@ -7,45 +7,60 @@ import { ApiService } from '../../../_services/api.service';
 })
 export class AnalyticsPeopleComponent implements OnInit {
   users : any[] = [];
-  plants = ["Monterrey", "Leon", "CDMX", "Monterrey", "Monterrey"]
+  deliverables : any[] = [];
+  visible = false;
+  expandSet = new Set<number>();
+  chosenUser = {"user": {"id": 0, "name": "", "lastName1": ""}, "plant": {}};
+  onExpandChange(id: number, checked: boolean): void {
+    if (checked) {
+      this.expandSet.add(id);
+    } else {
+      this.expandSet.delete(id);
+    }
+  }
+
   constructor(
     private api : ApiService
   ) {}
   
   ngOnInit(): void {
-    this.getData();
+    this.getUsers();
   }
 
-  getData() {
-    this.api.getPipe("users").subscribe(resp => {
-      this.parse(resp);
-    })
+  open(type : string, user : any): void {
+    this.chosenUser = user;
+    this.getDeliverables(type);
+    this.visible = true;
   }
 
-  parse(information : any) {
-    for (var i = 0; i < information.length; i++) {
-      this.users.push(information[i]);
+  close(): void {
+    this.deliverables = [];
+    this.visible = false;
+  }
+
+  getUsers() {
+    this.api.getPipe("users").subscribe((resp : any) => {
+      for (var i = 0; i < resp.length; i++) {
+        this.users.push(resp[i]);
+      }
+    });
+  }
+
+  getDeliverables(type : string) {
+    this.api.getPipe("deliverables?deliverable_type=" + type + "&user_id=" + this.chosenUser.user.id).subscribe((resp : any) => {
+      for (var i = 0; i < resp.length; i++) {
+        this.deliverables.push(resp[i]);
+      }
+    });
+  }
+
+  getColor(xp : number) {
+    if(xp < 100) {
+      return "brown";
+    } else if (xp < 150) {
+      return "silver";
+    } else {
+      return "gold";
     }
-    console.log(this.users);
   }
-  // listOfData: Person[] = [
-  //   {
-  //     key: '1',
-  //     name: 'John Brown',
-  //     age: 32,
-  //     address: 'New York No. 1 Lake Park'
-  //   },
-  //   {
-  //     key: '2',
-  //     name: 'Jim Green',
-  //     age: 42,
-  //     address: 'London No. 1 Lake Park'
-  //   },
-  //   {
-  //     key: '3',
-  //     name: 'Joe Black',
-  //     age: 32,
-  //     address: 'Sidney No. 1 Lake Park'
-  //   }
-  // ];
 }
