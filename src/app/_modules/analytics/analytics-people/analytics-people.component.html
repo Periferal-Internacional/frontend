@@ -41,11 +41,23 @@
       nzPlacement="right"
       nzTitle="Entregables de {{chosenUser.user.name}} {{chosenUser.user.lastName1}}"
       (nzOnClose)="close()"
-      [nzWidth]="600"
+      [nzWidth]="350"
     >
       <ng-container *nzDrawerContent>
-        <div *ngFor="let document of deliverables">
-          <p>{{document.comment}}</p>
-        </div>
+          <nz-card *ngFor="let document of deliverables" style="width:300px; margin-bottom: 20px;" [nzCover]="coverTemplate" [nzActions]="[actionDownload]">
+              <nz-card-meta
+                nzTitle="{{document.name}}"
+                nzDescription="{{document.comment}}"
+              ></nz-card-meta>
+            </nz-card>
+            <ng-template #coverTemplate>
+              <img alt="example" src="../../../../assets/img/pdf.png" width="50%"/>
+            </ng-template>
+            <ng-template #actionDownload>
+              <i nz-icon nzType="download"></i>
+            </ng-template>
+            <ng-template #actionEdit>
+              <i nz-icon nzType="ellipsis"></i>
+            </ng-template>
       </ng-container>
     </nz-drawer>

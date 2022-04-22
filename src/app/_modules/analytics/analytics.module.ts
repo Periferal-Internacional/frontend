@@ -19,7 +19,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
-
+import { NzCardModule } from 'ng-zorro-antd/card';
 
 @NgModule({
   declarations: [AnalyticsComponent, AnalyticsStatisticComponent, AnalyticsPeopleComponent],
@@ -36,7 +36,8 @@ import { NzDrawerModule } from 'ng-zorro-antd/drawer';
     NzTableModule,
     NzDividerModule,
     NzProgressModule,
-    NzDrawerModule
+    NzDrawerModule,
+    NzCardModule
   ],
   exports: [AnalyticsComponent, AnalyticsStatisticComponent, AnalyticsPeopleComponent]
 })
