@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService} from '../../../_services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'auth-login',
@@ -12,8 +13,10 @@ export class AuthLoginComponent implements OnInit {
 
   submitForm(): void {
     if (this.validateForm.valid) {
-      this.api.postPipe("/auth/login", this.validateForm.value).subscribe(resp => {
-        console.log(resp);
+      this.api.loginPipe(this.validateForm.value).subscribe((resp:any) => {
+        localStorage.setItem("token", resp.token);
+        localStorage.setItem("id", resp.id);
+        this.router.navigate(['/dashboard']);
       });
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
@@ -25,7 +28,7 @@ export class AuthLoginComponent implements OnInit {
     }
   }
 
-  constructor(private fb: FormBuilder, private api: ApiService) {}
+  constructor(private fb: FormBuilder, private api: ApiService, private router: Router) {}
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
