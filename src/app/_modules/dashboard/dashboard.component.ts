@@ -6,15 +6,12 @@ import { ApiService } from '../../_services/api.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+  user : any = localStorage.getItem("user");
   constructor(
     private api : ApiService
   ) { }
 
   ngOnInit(): void {
-  }
-
-  fetchUser() {
-    
+    this.user = JSON.parse(this.user);
   }
 }

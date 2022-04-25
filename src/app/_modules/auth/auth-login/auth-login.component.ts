@@ -16,7 +16,10 @@ export class AuthLoginComponent implements OnInit {
       this.api.loginPipe(this.validateForm.value).subscribe((resp:any) => {
         localStorage.setItem("token", resp.token);
         localStorage.setItem("id", resp.id);
-        this.router.navigate(['/dashboard']);
+        this.api.getPipe("users/"+resp.id).subscribe((resp:any) => {
+          localStorage.setItem("user", JSON.stringify(resp));
+          this.router.navigateByUrl('/dashboard');
+        });
       });
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
