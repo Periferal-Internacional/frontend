@@ -17,12 +17,16 @@
     <i nz-icon nzType="file-add" nzTheme="outline"></i>
     <span>Deliverables</span>
   </li>
-  <li nz-menu-item routerLink="/manager">
+  <li nz-menu-item routerLink="/manager" *ngIf="user.admin">
     <i nz-icon nzType="monitor" nzTheme="outline"></i>
     <span>Manager</span>
   </li>
   <li nz-menu-item routerLink="/help">
     <i nz-icon nzType="question" nzTheme="outline"></i>
     <span>Documentation TWI</span>
+  </li>
+  <li nz-menu-item routerLink="/auth">
+    <i nz-icon nzType="logout" nzTheme="outline"></i>
+    <span>Log Out</span>
   </li>
 </ul>

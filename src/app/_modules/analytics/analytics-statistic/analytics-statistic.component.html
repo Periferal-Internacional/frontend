@@ -1,9 +1,15 @@
     <nz-row [nzGutter]="16">
-      <nz-col [nzSpan]="12">
+      <nz-col [nzSpan]="20">
         <nz-statistic [nzValue]="(users.length | number)!" [nzTitle]="'Cantidad de Usuarios'"></nz-statistic>
       </nz-col>
-      <nz-col [nzSpan]="12">
-        <nz-statistic [nzValue]="(medalCount | number)!" [nzTitle]="'Total de Medallas'"></nz-statistic>
+      <nz-col [nzSpan]="8">
+        <nz-statistic [nzValue]="(medalCountB | number)!" [nzTitle]="'Total Medallas Bronce'"></nz-statistic>
+      </nz-col>
+      <nz-col [nzSpan]="8">
+        <nz-statistic [nzValue]="(medalCountS | number)!" [nzTitle]="'Total Medallas Plata'"></nz-statistic>
+      </nz-col>
+      <nz-col [nzSpan]="8">
+        <nz-statistic [nzValue]="(medalCountG | number)!" [nzTitle]="'Total Medallas Oro'"></nz-statistic>
       </nz-col>
     </nz-row>
   

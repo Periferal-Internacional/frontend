@@ -1,33 +1,31 @@
 <div class="wrapper">
     <nz-card class="first" style="width:400;">
-        <h2> Progreso por Planta </h2>
-        <nz-progress [nzPercent]="75" nzType="circle" nzStrokeColor="red" [nzWidth]="130" [nzFormat]="format1"></nz-progress>
-        <nz-progress [nzPercent]="69" nzType="circle" nzStrokeColor="red" [nzWidth]="130" [nzFormat]="format2"></nz-progress>
-        <nz-progress [nzPercent]="43" nzType="circle" nzStrokeColor="red" [nzWidth]="130" [nzFormat]="format3"></nz-progress>
+        <h2> Supervisores Certificados </h2>
+        <nz-progress [nzPercent]="this.opCertificados" nzType="circle" nzStrokeColor="red" [nzWidth]="200" [nzFormat]="format1"></nz-progress>
     </nz-card>
 
     <nz-card class="second" style="width:380px;">
-        <h2> Avance Mensual </h2>
+        <h2> Avance TWI </h2>
         <nz-statistic
-                [nzValue]="(22.32 | number: '1.0-2')!"
+                [nzValue]="(this.promJI | number: '1.0-2')!"
                 [nzTitle]="'JI'"
                 [nzPrefix]="prefixTplOne"
                 [nzSuffix]="'%'"
                 [nzValueStyle]="{ color: '#3F8600' }"
         ></nz-statistic>
         <nz-statistic
-                [nzValue]="(17.05 | number: '1.0-2')!"
+                [nzValue]="(this.promJR | number: '1.0-2')!"
                 [nzTitle]="'JR'"
                 [nzPrefix]="prefixTplOne"
                 [nzSuffix]="'%'"
                 [nzValueStyle]="{ color: '#3F8600' }"
         ></nz-statistic>
         <nz-statistic
-                [nzValue]="(9.56 | number: '1.0-2')!"
+                [nzValue]="(this.promJM | number: '1.0-2')!"
                 [nzTitle]="'JM'"
-                [nzPrefix]="prefixTplTwo"
+                [nzPrefix]="prefixTplOne"
                 [nzSuffix]="'%'"
-                [nzValueStyle]="{ color: '#CF1322' }"
+                [nzValueStyle]="{ color: '#3F8600' }"
         ></nz-statistic>
         <ng-template #prefixTplOne><i nz-icon nzType="arrow-up"></i></ng-template>
         <ng-template #prefixTplTwo><i nz-icon nzType="arrow-down"></i></ng-template>

@@ -7,7 +7,9 @@ import { ApiService } from 'src/app/_services/api.service';
 })
 export class AnalyticsStatisticComponent implements OnInit{
   users : Array<any> = [];
-  medalCount = 0;
+  medalCountB = 0;
+  medalCountS = 0;
+  medalCountG = 0;
   constructor(
     private api : ApiService
   ) {}
@@ -27,31 +29,40 @@ export class AnalyticsStatisticComponent implements OnInit{
 
   jiMedal(user : any) {
     if (user.user.xp_ji == 150) {
-      this.medalCount += 3;
+      this.medalCountG += 1;
+      this.medalCountS += 1;
+      this.medalCountB += 1;
     } else if (user.user.xp_ji >= 100 && user.user.xp_ji < 150) {
-      this.medalCount += 2;
+      this.medalCountS += 1;
+      this.medalCountB += 1;
     } else if (user.user.xp_ji >= 50 && user.user.xp_ji < 100){
-      this.medalCount += 1;
+      this.medalCountB += 1;
     }
   }
 
   jrMedal(user : any) {
     if (user.user.xp_jr == 150) {
-      this.medalCount += 3;
+      this.medalCountG += 1;
+      this.medalCountS += 1;
+      this.medalCountB += 1;
     } else if (user.user.xp_jr >= 100 && user.user.xp_jr < 150) {
-      this.medalCount += 2;
+      this.medalCountS += 1;
+      this.medalCountB += 1;
     } else if (user.user.xp_jr >= 50 && user.user.xp_jr < 100) {
-      this.medalCount += 1;
+      this.medalCountB += 1;
     }
   }
 
   jmMedal(user : any) {
     if (user.user.xp_jm == 150) {
-      this.medalCount += 3;
+      this.medalCountG += 1;
+      this.medalCountS += 1;
+      this.medalCountB += 1;
     } else if (user.user.xp_jm >= 100 && user.user.xp_jm < 150) {
-      this.medalCount += 2;
+      this.medalCountS += 1;
+      this.medalCountB += 1;
     } else if (user.user.xp_jm >= 50 && user.user.xp_jm < 100){
-      this.medalCount += 1;
+      this.medalCountB += 1;
     }
   }
 
