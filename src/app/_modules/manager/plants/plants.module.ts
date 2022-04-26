@@ -10,6 +10,8 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     FormsModule,
     ReactiveFormsModule,
     NzFormModule,
-    NzInputModule
+    NzInputModule,
+    NzButtonModule
   ],
   exports: [
     PlantsListComponent,
