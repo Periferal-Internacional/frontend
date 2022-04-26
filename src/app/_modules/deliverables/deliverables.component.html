@@ -1,24 +1,15 @@
 <breadcrumb></breadcrumb>
-<div class="inner-content">
-  <h1>Deliverables</h1>
-<div class="dropzone" dropzone (hovered)="toggleHover($any($event))" (dropped)="onDrop($any($event))">
-<!-- <div class="dropzone" dropzone (hovered)="toggleHover($any($event))" (dropped)="onDrop($any($event)) [class.hovering]="isHovering""> -->
-  <h3> Arrastra los Archivos aqui</h3>
-
-  <div>
-      <label>
-          <input type="file" (change)="onDrop($any($event).target.files)">
-      </label>
-  </div>
-</div>
-
-<div *ngIf="files.length > 0">
-  Archivos
-  <hr>
-</div>
-
-<div *ngFor="let file of files">
-  <!--<upload-task [file]="file"></upload-task>-->
-</div>
-</div>
-<div style="margin: 10%;"></div>
+<nz-upload
+      nzType="drag"
+      [nzMultiple]="true"
+      nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+      (nzChange)="handleChange($event)"
+    >
+      <p class="ant-upload-drag-icon">
+        <i nz-icon nzType="inbox"></i>
+      </p>
+      <p class="ant-upload-text">Click or drag file to this area to upload</p>
+      <p class="ant-upload-hint">
+        Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files
+      </p>
+</nz-upload>
