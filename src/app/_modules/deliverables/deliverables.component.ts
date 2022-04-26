@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
 
 @Component({
     selector: 'deliverables',
@@ -6,24 +8,21 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./deliverables.component.css']
 })
 export class DeliverablesComponent implements OnInit {
-
-    
-    /**isHovering: boolean;*/
-    files: File[] = [];
-
-    constructor() { }
+    constructor(private msg: NzMessageService) {}
 
     ngOnInit(): void {
+        
     }
 
-    toggleHover(event: boolean) {
-        /**this.isHovering = event;*/
-    }
-
-    onDrop(files: FileList) {
-        for (let i = 0; i < files.length; i++) {
-            console.log('deliverables adding file: ', files.item(i));
-            /**this.files.push(files.item(i));*/
+    handleChange({ file, fileList }: NzUploadChangeParam): void {
+        const status = file.status;
+        if (status !== 'uploading') {
+          console.log(file, fileList);
+        }
+        if (status === 'done') {
+          this.msg.success(`${file.name} file uploaded successfully.`);
+        } else if (status === 'error') {
+          this.msg.error(`${file.name} file upload failed.`);
         }
     }
 
