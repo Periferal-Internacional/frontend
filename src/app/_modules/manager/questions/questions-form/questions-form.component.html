@@ -16,7 +16,7 @@
       </nz-form-control>
     </nz-form-item>
     <nz-form-item *ngFor="let control of listOfControl; let i = index">
-      <nz-form-label nzRequired [nzXs]="24" [nzSm]="4" *ngIf="i === 0" [nzFor]="control.controlInstance">
+      <nz-form-label nzRequired [nzXs]="24" [nzSm]="4" *ngIf="i === 0" [nzOffset]= "2" [nzFor]="control.controlInstance">
         Respuestas
       </nz-form-label>
       <nz-form-control
@@ -36,7 +36,7 @@
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 20, offset: 4 }">
+      <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 18, offset: 6 }">
         <button nz-button nzType="dashed" class="add-button" (click)="addField($event)">
           <i nz-icon nzType="plus"></i>
           Add field
@@ -51,14 +51,14 @@
         </nz-select>
       </nz-form-control>
     </nz-form-item>
-    <nz-form-item>
+    <nz-form-item >
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="xp">Experiencia</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Ingresa la cantidad de experiencia que la pregunta dará">
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Ingresa la cantidad de experiencia que la pregunta dará" >
         <input type="number" formControlName="xp" id="xp" />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item nz-row class="register-area">
-      <nz-form-control [nzSpan]="14" [nzOffset]="6">
+      <nz-form-control [nzSpan]="14" [nzOffset]="10">
         <button nz-button nzType="primary">Crear pregunta</button>
       </nz-form-control>
     </nz-form-item>
