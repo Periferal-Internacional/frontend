@@ -101,9 +101,12 @@
             ],
             "styles": [
               "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/Unity/TemplateData/style.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/Unity/Build/Web Build.loader.js"
+            ]
           }
         },
         "deploy": {
