@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'navbar',
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   user : any = localStorage.getItem('user');
-  constructor() { }
+
+  @Output() tabEmitter = new EventEmitter<any>();
+
+  constructor(
+    private router : Router
+  ) { }
 
   ngOnInit(): void {
     this.user = JSON.parse(this.user);
@@ -17,6 +23,14 @@ export class NavbarComponent implements OnInit {
 
   toggleCollapsed(): void {
     this.isCollapsed = !this.isCollapsed;
+  }
+
+  logOut() {
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    this.tabEmitter.emit("auth");
+    this.router.navigate(['/auth']);
   }
 }
 

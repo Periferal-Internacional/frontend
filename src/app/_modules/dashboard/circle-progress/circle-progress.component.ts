@@ -25,7 +25,6 @@ export class CircleProgressComponent implements OnInit {
   calculate(data : any){
     var max = (data.length * 150)
     for(var i=0; i<data.length; i++){
-      console.log(data[i])
       this.promJI += data[i].user.xp_ji;
       this.promJR += data[i].user.xp_jr;
       this.promJM += data[i].user.xp_jm;

@@ -1,6 +1,7 @@
 <nz-layout *ngIf="tab != '' && tab != 'auth'">
     <nz-sider nzCollapsible nzWidth="200px">
-      <navbar></navbar>
+      <!-- <navbar></navbar> -->
+      <navbar (tabEmitter)="updateTab($event)"></navbar>
     </nz-sider>
     <nz-layout>
       <nz-content>

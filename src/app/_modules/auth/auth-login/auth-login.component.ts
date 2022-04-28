@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService} from '../../../_services/api.service';
 import { Router } from '@angular/router';
@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./auth-login.component.css']
 })
 export class AuthLoginComponent implements OnInit {
+
+  @Output() tabEmitter = new EventEmitter<any>();
   validateForm!: FormGroup;
 
   submitForm(): void {
@@ -18,6 +20,7 @@ export class AuthLoginComponent implements OnInit {
         localStorage.setItem("id", resp.id);
         this.api.getPipe("users/"+resp.id).subscribe((resp:any) => {
           localStorage.setItem("user", JSON.stringify(resp));
+          this.tabEmitter.emit("dashboard");
           this.router.navigateByUrl('/dashboard');
         });
       });

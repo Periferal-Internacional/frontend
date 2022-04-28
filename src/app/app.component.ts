@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +9,8 @@ export class AppComponent {
   title = 'frontend';
 
   tab = window.location.href.split("/").reverse()[0];
+
+  updateTab(tab : string) {
+    this.tab = tab;
+  }
 }
