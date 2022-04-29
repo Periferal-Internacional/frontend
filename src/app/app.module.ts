@@ -26,7 +26,7 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { DeliverablesModule } from './_modules/deliverables/deliverables.module';
 import { HelpModule } from './_modules/help/help.module';
 import { ManagerModule } from './_modules/manager/manager.module';
-import {AuthInterceptor} from './_services/auth.interceptor';
+import { AuthInterceptor } from './_services/auth.interceptor';
 
 registerLocaleData(en);
 
@@ -56,9 +56,6 @@ registerLocaleData(en);
     DeliverablesModule,
     HelpModule,
     ManagerModule
-    // provideFirebaseApp(() => initializeApp(environment.firebase)),
-    // provideFirestore(() => getFirestore()),
-    // provideStorage(() => getStorage())
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

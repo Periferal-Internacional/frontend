@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
-
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,8 @@ import { NzDrawerModule } from 'ng-zorro-antd/drawer';
     NzMenuModule,
     NzButtonModule,
     NzIconModule,
-    NzDrawerModule
+    NzDrawerModule,
+    NzLayoutModule
   ],
   exports: [ManagerComponent]
 })

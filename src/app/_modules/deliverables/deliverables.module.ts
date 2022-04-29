@@ -4,6 +4,7 @@ import { DeliverablesComponent } from './deliverables.component';
 import { ComponentsModule } from 'src/app/_components/components.module';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
     CommonModule,
     ComponentsModule,
     NzUploadModule,
-    NzMessageModule
+    NzMessageModule,
+    NzLayoutModule
   ],
   exports: [ 
     DeliverablesComponent
