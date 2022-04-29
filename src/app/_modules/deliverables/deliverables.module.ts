@@ -9,12 +9,16 @@ import { DeliDropdownComponent } from './deli-dropdown/deli-dropdown.component';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { DeliTextComponent } from './deli-text/deli-text.component';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { DeliButtonComponent } from './deli-button/deli-button.component';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+
 
 @NgModule({
   declarations: [
     DeliverablesComponent,
     DeliDropdownComponent,
-    DeliTextComponent
+    DeliTextComponent,
+    DeliButtonComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +27,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     NzMessageModule,
     NzLayoutModule,
     NzDropDownModule,
-    NzInputModule
+    NzInputModule,
+    NzButtonModule
   ],
   exports: [ 
     DeliverablesComponent
