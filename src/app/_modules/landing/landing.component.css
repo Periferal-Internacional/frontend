@@ -1,15 +1,17 @@
 .boton2 {
     text-align: center;
     position: relative;
-    bottom: 50px;
-    left: 500px;
+    width: fit-content;
+    float: right;
+    padding: 10px;
+    bottom: 60px;
 }
 
 .imagen{
     margin: auto;
     width: 10%;
     position: relative;
-    bottom: 507px;
+    bottom: 475px;
     
 }
 
