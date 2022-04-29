@@ -9,36 +9,64 @@ export class ManagerComponent implements OnInit {
   tabs : string[] = [];
   inputTabs : string[] = [];
 
-  qShow = true;
+  qShow = false;
   pShow = false;
+  oShow = false;
   visible = false;
   objType = "";
   refetch = false;
+
+  user : any = localStorage.getItem("user");
+
   constructor() { }
 
   ngOnInit(): void {
     this.setTab();
+    this.user = JSON.parse(this.user);
   }
 
   updateTab(tab : string) {
-    if (tab == 'Questions') {
-      this.setTab(['Manager','Questions']);
-      this.inputTabs = ['Manager','Questions'];
-      this.switch("Questions");
-    } else {
-      this.setTab(['Manager','Plants']);
-      this.inputTabs = ['Manager','Plants'];
-      this.switch("Plants");
+    switch(tab) {
+      case "Questions": {
+        this.setTab(['Manager','Questions']);
+        this.inputTabs = ['Manager','Questions'];
+        this.switch("Questions");
+        break;
+      }
+      case "Plants": {
+        this.setTab(['Manager','Plants']);
+        this.inputTabs = ['Manager','Plants'];
+        this.switch("Plants");
+        break;
+      }
+      case "Operators": {
+        this.setTab(['Manager','Operators']);
+        this.inputTabs = ['Manager','Operators'];
+        this.switch("Operators");
+        break;
+      }
     }
   }
 
   switch(tShow : string) {
-    if (tShow == "Questions") {
-      this.qShow = true;
-      this.pShow = false;
-    } else if (tShow == "Plants") {
-      this.qShow = false;
-      this.pShow = true;
+    switch(tShow) {
+      case "Questions": {
+        this.qShow = true;
+        this.pShow = false;
+        this.oShow = false;
+        break;
+      }
+      case "Plants": {
+        this.qShow = false;
+        this.pShow = true;
+        this.oShow = false;
+        break;
+      }
+      case "Operators": {
+        this.qShow = false;
+        this.pShow = false;
+        this.oShow = true;
+      }
     }
   }
 

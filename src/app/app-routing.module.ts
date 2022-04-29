@@ -32,8 +32,7 @@ const routes: Routes = [
     path:  'deliverables', component: DeliverablesComponent
   },
   {
-    path: 'manager',
-    component: ManagerComponent
+    path: 'manager', component: ManagerComponent
   }
 
 ];

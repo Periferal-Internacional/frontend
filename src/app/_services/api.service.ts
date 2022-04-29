@@ -18,6 +18,10 @@ export class ApiService {
     return this.http.get(this.baseUrl + path, this.httpOptions);
   }
 
+  putPipe(path:string, request:JSON) {
+    return this.http.put<JSON>(this.baseUrl + path, request, this.httpOptions);
+  }
+  
   postPipe(path:string, request:JSON) {
     return this.http.post<JSON>(this.baseUrl + path, request, this.httpOptions);
   }

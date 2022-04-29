@@ -1,0 +1,13 @@
+.inner-content {
+    padding: 24px;
+    background-color: #F7F7F7;
+    min-height: 360px;
+}
+.login-form {
+    width: 300px;
+}
+
+
+  .login-form-button {
+    width: 100%;
+  }

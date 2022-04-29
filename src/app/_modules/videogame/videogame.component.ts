@@ -34,31 +34,22 @@ export class VideogameComponent implements OnInit, AfterViewInit {
       
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         container.className = "unity-mobile";
-        // this.container.className = "unity-mobile";
         config.devicePixelRatio = 1;
         mobileWarning.style.display = "block";
-        // this.mobileWarning.style.display = "block";
         setTimeout(() => {
           mobileWarning.style.display = "none";
-          // this.mobileWarning.style.display = "none";
         }, 5000);
       } else {
         canvas.style.width = "960px";
-        // this.canvas.style.width = "960px";
         canvas.style.height = "600px";
-        // this.canvas.style.height = "600px";
       }
       loadingBar.style.display = "block";
-      // this.loadingBar.style.display = "block";
   
       createUnityInstance(canvas, config, (progress: any) => {
         progressBarFull.style.width = 100 * progress + "%";
-        // this.progressBarFull.style.width = 100 * progress + "%";
       }).then((unityInstance: any) => {
         loadingBar.style.display = "none";
-        // this.loadingBar.style.display = "none";
         fullscreenButton.onclick = () => {
-        // this.fullscreenButton.onclick = () => {
           unityInstance.SetFullscreen(1);
         };
       }).catch((message: any) => {
