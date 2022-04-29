@@ -28,11 +28,12 @@ import { HelpModule } from './_modules/help/help.module';
 import { ManagerModule } from './_modules/manager/manager.module';
 import { AuthInterceptor } from './_services/auth.interceptor';
 
+
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
