@@ -10,15 +10,16 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { OperatorsComponent } from './operators/operators.component';
+import { KPIsComponent } from './kpis/kpis.component';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzCardModule } from 'ng-zorro-antd/card';
 
 @NgModule({
   declarations: [
     ManagerComponent,
-    OperatorsComponent
+    KPIsComponent
   ],
   imports: [
     RouterModule,
@@ -34,8 +35,9 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     NzFormModule,
     FormsModule,
     ReactiveFormsModule,
-    NzInputModule
+    NzInputModule,
+    NzCardModule
   ],
-  exports: [ManagerComponent, OperatorsComponent]
+  exports: [ManagerComponent, KPIsComponent]
 })
 export class ManagerModule { }

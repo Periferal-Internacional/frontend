@@ -16,9 +16,9 @@
             <i nz-icon nzType="control"></i>
             Plantas
           </li>
-          <li nz-menu-item routerLink="/manager/operadores" (click)="updateTab('Operators')" *ngIf="!user.admin">
-            <i nz-icon nzType="team"></i>
-            Operadores
+          <li nz-menu-item routerLink="/manager/kpis" (click)="updateTab('KPIs')" *ngIf="!user.admin">
+            <i nz-icon nzType="line-chart"></i>
+            KPIs
           </li>
 
           <button nz-button nzType="primary" (click)="open()" nzShape="circle"><i nz-icon nzType="plus" *ngIf="user.admin"></i></button>
@@ -26,7 +26,7 @@
 
         <questions-list *ngIf="qShow" [refetch]="refetch" (fetched)="changeStatus()"></questions-list>
         <plants-list *ngIf="pShow" [refetch]="refetch" (fetched)="changeStatus()"></plants-list>
-        <operators *ngIf="oShow"></operators>
+        <kpis *ngIf="kShow"></kpis>
         <nz-drawer [nzClosable]="false" [nzVisible]="visible" nzPlacement="right" nzTitle="Crear {{ objType }}"
           (nzOnClose)="close()" [nzWidth]="600">
           <ng-container *nzDrawerContent>

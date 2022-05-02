@@ -11,7 +11,7 @@ export class ManagerComponent implements OnInit {
 
   qShow = false;
   pShow = false;
-  oShow = false;
+  kShow = false;
   visible = false;
   objType = "";
   refetch = false;
@@ -39,10 +39,10 @@ export class ManagerComponent implements OnInit {
         this.switch("Plants");
         break;
       }
-      case "Operators": {
-        this.setTab(['Manager','Operators']);
-        this.inputTabs = ['Manager','Operators'];
-        this.switch("Operators");
+      case "KPIs": {
+        this.setTab(['Manager','KPIs']);
+        this.inputTabs = ['Manager','KPIs'];
+        this.switch("KPIs");
         break;
       }
     }
@@ -53,19 +53,19 @@ export class ManagerComponent implements OnInit {
       case "Questions": {
         this.qShow = true;
         this.pShow = false;
-        this.oShow = false;
+        this.kShow = false;
         break;
       }
       case "Plants": {
         this.qShow = false;
         this.pShow = true;
-        this.oShow = false;
+        this.kShow = false;
         break;
       }
-      case "Operators": {
+      case "KPIs": {
         this.qShow = false;
         this.pShow = false;
-        this.oShow = true;
+        this.kShow = true;
       }
     }
   }

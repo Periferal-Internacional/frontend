@@ -5,6 +5,7 @@
       <th>Nombre</th>
       <th>Posición</th>
       <th>Planta</th>
+      <th>Operarios Cert.</th>
       <th>Entregas</th>
     </tr>
   </thead>
@@ -14,7 +15,8 @@
         <td [nzExpand]="expandSet.has(user.user.id)" (nzExpandChange)="onExpandChange(user.user.id, $event)"></td>
         <td>{{user.user.name}} {{user.user.lastName1}}</td>
         <td>{{user.user.position}}</td>
-        <td>{{user.plant.city}}</td>
+        <td>{{user.plant.name}}</td>
+        <td>{{(user.user.cap_operators / user.user.total_operators) * 100}}%</td>
         <td>
           <a (click)="open('JI', user)">JI</a>
           <nz-divider nzType="vertical"></nz-divider>
@@ -24,40 +26,45 @@
         </td>
       </tr>
       <tr [nzExpand]="expandSet.has(user.user.id)">
-          <small>Job Instructions</small>
-          <nz-progress [nzPercent]="(user.user.xp_ji / 150 * 100).toFixed(0)" nzStrokeColor="{{getColor(user.user.xp_ji)}}" ></nz-progress>
-          <small>Job Methods</small>
-          <nz-progress [nzPercent]="(user.user.xp_jm / 150 * 100).toFixed(0)" nzStrokeColor="{{getColor(user.user.xp_jm)}}"></nz-progress>
-          <small>Job Relations</small>
-          <nz-progress [nzPercent]="(user.user.xp_jr / 150 * 100).toFixed(0)" nzStrokeColor="{{getColor(user.user.xp_jr)}}"></nz-progress>
+        <div style="display:flex; justify-content: space-between;">
+          <div style="display: inline">
+            <small>Job Instructions</small>
+            <nz-progress [nzPercent]="(user.user.xp_ji / 150 * 100).toFixed(0)"
+              nzStrokeColor="{{getColor(user.user.xp_ji)}}"></nz-progress>
+            <small>Job Methods</small>
+            <nz-progress [nzPercent]="(user.user.xp_jm / 150 * 100).toFixed(0)"
+              nzStrokeColor="{{getColor(user.user.xp_jm)}}"></nz-progress>
+            <small>Job Relations</small>
+            <nz-progress [nzPercent]="(user.user.xp_jr / 150 * 100).toFixed(0)"
+              nzStrokeColor="{{getColor(user.user.xp_jr)}}"></nz-progress>
+          </div>
+          <div style="display: inline; margin-top: 10px;">
+            <h3>Mejoras:</h3>
+            <p>Minutos de Paro (mins/mes) - <strong>{{((user.user.mdp_b4 - user.user.mdp_aft) / user.user.mdp_b4) * 100}}%</strong></p>
+            <p>Envases desechados (tarimas/mes) - <strong>{{((user.user.waste_b4 - user.user.waste_aft) / user.user.waste_b4) * 100}}%</strong></p>
+            <p>Minutos por cambio de formato (mins/mes) - <strong>{{((user.user.format_b4 - user.user.format_aft)  / user.user.format_b4) * 100}}%</strong></p>
+          </div>
+        </div>
       </tr>
     </ng-container>
   </tbody>
 </nz-table>
 
-<nz-drawer
-      [nzClosable]="false"
-      [nzVisible]="visible"
-      nzPlacement="right"
-      nzTitle="Entregables de {{chosenUser.user.name}} {{chosenUser.user.lastName1}}"
-      (nzOnClose)="close()"
-      [nzWidth]="350"
-    >
-      <ng-container *nzDrawerContent>
-          <nz-card *ngFor="let document of deliverables" style="width:300px; margin-bottom: 20px;" [nzCover]="coverTemplate" [nzActions]="[actionDownload]">
-              <nz-card-meta
-                nzTitle="{{document.name}}"
-                nzDescription="{{document.comment}}"
-              ></nz-card-meta>
-            </nz-card>
-            <ng-template #coverTemplate>
-              <img alt="example" src="../../../../assets/img/pdf.png" width="50%"/>
-            </ng-template>
-            <ng-template #actionDownload>
-              <i nz-icon nzType="download"></i>
-            </ng-template>
-            <ng-template #actionEdit>
-              <i nz-icon nzType="ellipsis"></i>
-            </ng-template>
-      </ng-container>
-    </nz-drawer>
+<nz-drawer [nzClosable]="false" [nzVisible]="visible" nzPlacement="right"
+  nzTitle="Entregables de {{chosenUser.user.name}} {{chosenUser.user.lastName1}}" (nzOnClose)="close()" [nzWidth]="350">
+  <ng-container *nzDrawerContent>
+    <nz-card *ngFor="let document of deliverables" style="width:300px; margin-bottom: 20px;" [nzCover]="coverTemplate"
+      [nzActions]="[actionDownload]">
+      <nz-card-meta nzTitle="{{document.name}}" nzDescription="{{document.comment}}"></nz-card-meta>
+    </nz-card>
+    <ng-template #coverTemplate>
+      <img alt="example" src="../../../../assets/img/pdf.png" width="50%" />
+    </ng-template>
+    <ng-template #actionDownload>
+      <i nz-icon nzType="download"></i>
+    </ng-template>
+    <ng-template #actionEdit>
+      <i nz-icon nzType="ellipsis"></i>
+    </ng-template>
+  </ng-container>
+</nz-drawer>

@@ -8,7 +8,7 @@ import { HelpComponent } from './_modules/help/help.component';
 import { LandingComponent } from './_modules/landing/landing.component';
 import { ManagerComponent } from './_modules/manager/manager.component';
 import { VideogameComponent } from './_modules/videogame/videogame.component';
-
+import { KPIsComponent } from './_modules/manager/kpis/kpis.component';
 const routes: Routes = [
   {
     path: '', component: LandingComponent
@@ -32,7 +32,12 @@ const routes: Routes = [
     path:  'deliverables', component: DeliverablesComponent
   },
   {
-    path: 'manager', component: ManagerComponent
+    path: 'manager', component: ManagerComponent,
+    children: [
+      {
+        path: 'kpis', component: KPIsComponent
+      }
+    ]
   }
 
 ];

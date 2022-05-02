@@ -13,7 +13,7 @@
     <i nz-icon nzType="desktop" nzTheme="outline"></i>
     <span>Videogame</span>
   </li>
-  <li nz-menu-item routerLink="/deliverables">
+  <li nz-menu-item routerLink="/deliverables" *ngIf="!user.admin">
     <i nz-icon nzType="file-add" nzTheme="outline"></i>
     <span>Deliverables</span>
   </li>
