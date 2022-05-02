@@ -1,29 +1,77 @@
 import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
+import { NzUploadChangeParam, NzUploadXHRArgs } from 'ng-zorro-antd/upload';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpEventType, HttpEvent, HttpResponse, HttpClient, HttpRequest } from '@angular/common/http';
+import { ApiService } from 'src/app/_services/api.service';
+
+
 
 @Component({
-    selector: 'deliverables',
-    templateUrl: './deliverables.component.html',
-    styleUrls: ['./deliverables.component.css']
+  selector: 'deliverables',
+  templateUrl: './deliverables.component.html',
+  styleUrls: ['./deliverables.component.css']
 })
 export class DeliverablesComponent implements OnInit {
-    constructor(private msg: NzMessageService) {}
 
-    ngOnInit(): void {
-        
-    }
+  validateForm!: FormGroup;
 
-    handleChange({ file, fileList }: NzUploadChangeParam): void {
-        const status = file.status;
-        if (status !== 'uploading') {
-          console.log(file, fileList);
+  constructor(private msg: NzMessageService, private fb: FormBuilder, private api: ApiService, private http: HttpClient) { }
+
+  ngOnInit(): void {
+    this.validateForm = this.fb.group({
+      name: [null, [Validators.required]],
+      comment: [null],
+      deliverable_type: [null, [Validators.required]],
+    });
+  }
+
+  submitForm(): void {
+    if (this.validateForm.valid) {
+      this.validateForm.value.user_id = localStorage.getItem('id');
+      this.api.postPipe("deliverables", this.validateForm.value).subscribe(resp => {
+        console.log(resp);
+      });
+    } else {
+      Object.values(this.validateForm.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
         }
-        if (status === 'done') {
-          this.msg.success(`${file.name} file uploaded successfully.`);
-        } else if (status === 'error') {
-          this.msg.error(`${file.name} file upload failed.`);
-        }
+      });
     }
+  }
 
+  handleChange({ file, fileList }: NzUploadChangeParam): void {
+    const status = file.status;
+    if (status !== 'uploading') {
+      console.log(file, fileList);
+    }
+    if (status === 'done') {
+      this.msg.success(`${file.name} file uploaded successfully.`);
+    } else if (status === 'error') {
+      this.msg.error(`${file.name} file upload failed.`);
+    }
+  }
+
+  upload = (item : NzUploadXHRArgs) => {
+    const formData = new FormData();
+    formData.append('file', item.file as any); // tslint:disable-next-line:no-any
+    const req = new HttpRequest('POST', item.action!, formData, {
+      reportProgress : true,
+      withCredentials: false
+    });
+    return this.http.request(req).subscribe((event: HttpEvent<unknown>) => {
+      if (event.type === HttpEventType.UploadProgress) {
+        if (event.total! > 0) {
+          (event as any).percent = event.loaded / event.total! * 100; // tslint:disable-next-line:no-any
+        }
+        item.onProgress!(event, item.file);
+      } else if (event instanceof HttpResponse) { /* success */
+        item.onSuccess!(event.body, item.file, event);
+      }
+    },(err) => { /* error */
+      item.onError!(err, item.file);
+    });
+  };
 }

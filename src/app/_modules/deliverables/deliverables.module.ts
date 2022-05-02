@@ -11,7 +11,10 @@ import { DeliTextComponent } from './deli-text/deli-text.component';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { DeliButtonComponent } from './deli-button/deli-button.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzCardModule } from 'ng-zorro-antd/card';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,12 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     NzLayoutModule,
     NzDropDownModule,
     NzInputModule,
-    NzButtonModule
+    NzButtonModule,
+    NzFormModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NzSelectModule,
+    NzCardModule
   ],
   exports: [ 
     DeliverablesComponent

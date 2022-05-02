@@ -7,41 +7,54 @@
       <breadcrumb></breadcrumb>
       <div class="inner-content">
         <h1> Deliverables</h1>
-        <div>
-          <textarea nz-input placeholder="Titulo" nzAutosize></textarea>
-          <h1></h1>
-          <textarea
-            nz-input
-            placeholder="Comentarios"
-            [nzAutosize]="{ minRows: 2, maxRows: 6 }"
-          ></textarea>
-          <h1></h1>
-        </div>
-        <a nz-dropdown [nzDropdownMenu]="menu">
-          Tipo de Entregable TWI
-          <i nz-icon nzType="down"></i>
-        </a>
-        <nz-dropdown-menu #menu="nzDropdownMenu">
-          <ul nz-menu nzSelectable>
-            <li nz-menu-item>Job Instructions</li>
-            <li nz-menu-item>Job Relations</li>
-            <li nz-menu-item>Job Methods</li>
-          </ul>
-        </nz-dropdown-menu>
-        <h1></h1>
-        <nz-upload nzType="drag" [nzMultiple]="true" nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-          (nzChange)="handleChange($event)">
-          <p class="ant-upload-drag-icon">
-            <i nz-icon nzType="inbox"></i>
-          </p>
-          <p class="ant-upload-text">Click or drag file to this area to upload</p>
-          <p class="ant-upload-hint">
-            Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files
-          </p>
-        </nz-upload>
-        <h1></h1>
-        <button nz-button nzType="primary" style="float: right;">Enviar</button>
-        <h1 style="height: 63px;"></h1>
+        <nz-card>
+          <form nz-form nzLayout="vertical" [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+            <nz-form-item>
+              <nz-form-label nzFor="name" nzRequired>Nombre del documento</nz-form-label>
+              <nz-form-control nzErrorTip="Por favor ingrese un nombre al entregable">
+                <nz-input-group>
+                  <input type="text" nz-input formControlName="name" placeholder="Nombre del documento" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label nzFor="comment" nzRequired>Comentarios</nz-form-label>
+              <nz-form-control>
+                <nz-input-group>
+                  <input type="textarea" nz-input formControlName="comment" placeholder="Comentarios" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label nzFor="gender" nzRequired>Tipo de Entregable</nz-form-label>
+              <nz-form-control [nzSpan]="12" nzErrorTip="Por favor eliga un tipo de entregable">
+                <nz-select
+                  id="deliverable_type"
+                  formControlName="deliverable_type"
+                  nzPlaceHolder="Seleccione el tipo de entregable"
+                >
+                  <nz-option nzValue="JI" nzLabel="Job Instructions"></nz-option>
+                  <nz-option nzValue="JM" nzLabel="Job Methods"></nz-option>
+                  <nz-option nzValue="JR" nzLabel="Job Relations"></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+      
+            
+          </form>
+          <nz-upload nzType="drag" [nzMultiple]="true" nzAction="https://perinte.herokuapp.com/upload"[nzCustomRequest]="upload"
+            (nzChange)="handleChange($event)">
+            <p class="ant-upload-drag-icon">
+              <i nz-icon nzType="inbox"></i>
+            </p>
+            <p class="ant-upload-text">Click or drag file to this area to upload</p>
+            <p class="ant-upload-hint">
+              Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files
+            </p>
+          </nz-upload>
+          <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" (click)="submitForm()">Enviar</button>
+        </nz-card>
+        <h1 style="height: 80px;"></h1>
       </div>
     </nz-content>
     <nz-footer>Periférica Internacional ©2022 Implementado con Angular</nz-footer>
