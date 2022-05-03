@@ -6,11 +6,11 @@ import { ApiService } from '../../../_services/api.service';
   templateUrl: './analytics-people.component.html'
 })
 export class AnalyticsPeopleComponent implements OnInit {
-  users : any[] = [];
-  deliverables : any[] = [];
+  users: any[] = [];
+  deliverables: any[] = [];
   visible = false;
   expandSet = new Set<number>();
-  chosenUser = {"user": {"id": 0, "name": "", "lastName1": ""}, "plant": {}};
+  chosenUser = { "user": { "id": 0, "name": "", "lastName1": "" }, "plant": {} };
   onExpandChange(id: number, checked: boolean): void {
     if (checked) {
       this.expandSet.add(id);
@@ -20,14 +20,14 @@ export class AnalyticsPeopleComponent implements OnInit {
   }
 
   constructor(
-    private api : ApiService
-  ) {}
-  
+    private api: ApiService
+  ) { }
+
   ngOnInit(): void {
-    this.getUsers();
+    this.fetchData();
   }
 
-  open(type : string, user : any): void {
+  open(type: string, user: any): void {
     this.chosenUser = user;
     this.getDeliverables(type);
     this.visible = true;
@@ -38,24 +38,26 @@ export class AnalyticsPeopleComponent implements OnInit {
     this.visible = false;
   }
 
-  getUsers() {
-    this.api.getPipe("users").subscribe((resp : any) => {
+  fetchData() {
+    this.api.getPipe("users").subscribe((resp: any) => {
       for (var i = 0; i < resp.length; i++) {
-        this.users.push(resp[i]);
+        if (!resp[i].user.admin) {
+          this.users.push(resp[i]);
+        }
       }
     });
   }
 
-  getDeliverables(type : string) {
-    this.api.getPipe("deliverables?deliverable_type=" + type + "&user_id=" + this.chosenUser.user.id).subscribe((resp : any) => {
+  getDeliverables(type: string) {
+    this.api.getPipe("deliverables?deliverable_type=" + type + "&user_id=" + this.chosenUser.user.id).subscribe((resp: any) => {
       for (var i = 0; i < resp.length; i++) {
         this.deliverables.push(resp[i]);
       }
     });
   }
 
-  getColor(xp : number) {
-    if(xp < 100) {
+  getColor(xp: number) {
+    if (xp < 100) {
       return "brown";
     } else if (xp < 150) {
       return "silver";

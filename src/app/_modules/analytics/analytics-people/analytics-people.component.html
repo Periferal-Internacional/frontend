@@ -6,6 +6,7 @@
       <th>Posición</th>
       <th>Planta</th>
       <th>Operarios Cert.</th>
+      <th>Mejoras</th>
       <th>Entregas</th>
     </tr>
   </thead>
@@ -17,6 +18,7 @@
         <td>{{user.user.position}}</td>
         <td>{{user.plant.name}}</td>
         <td>{{(user.user.cap_operators / user.user.total_operators) * 100}}%</td>
+        <td>{{user.user.improvements}}</td>
         <td>
           <a (click)="open('JI', user)">JI</a>
           <nz-divider nzType="vertical"></nz-divider>
