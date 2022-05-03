@@ -66,7 +66,14 @@
       <i nz-icon nzType="download"></i>
     </ng-template>
     <ng-template #actionEdit>
-      <i nz-icon nzType="edit"></i>
+      <i nz-icon nzType="edit" (click)="showModal()"></i>
+
     </ng-template>
   </ng-container>
 </nz-drawer>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Calificación" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <ng-container *nzModalContent>
+    <p>Insertar Calificación (1-100)</p>
+    <input type="text" nz-input placeholder="Insertar Calificación Aquí">
+  </ng-container>
+</nz-modal>
