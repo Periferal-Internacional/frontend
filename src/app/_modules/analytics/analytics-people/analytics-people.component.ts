@@ -70,10 +70,9 @@ export class AnalyticsPeopleComponent implements OnInit {
     }
     this.api.putPipe("deliverables/" + this.chosenDocument.id, request).subscribe((resp: any) => {
       this.msg.success("Entregable calificado exitosamente");
-      this.grade = 0;
-      this.chosenDocument = {};
       this.getDeliverables(this.chosenDocument.deliverable_type);
-      this.isVisible = false;
+      this.grade = 0;
+      this.handleCancel();
     } , err => {
       this.msg.error("El entregable no pudo ser calificado. Inténtalo más tarde");
     });
