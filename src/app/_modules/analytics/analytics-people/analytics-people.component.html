@@ -56,24 +56,26 @@
   nzTitle="Entregables de {{chosenUser.user.name}} {{chosenUser.user.lastName1}}" (nzOnClose)="close()" [nzWidth]="350">
   <ng-container *nzDrawerContent>
     <nz-card *ngFor="let document of deliverables" style="width:300px; margin-bottom: 20px;" [nzCover]="coverTemplate"
-      [nzActions]="[actionDownload, actionEdit]">
+      [nzActions]="[actionDownload, actionEdit]" [nzExtra]="more">
       <nz-card-meta nzTitle="{{document.name}}" nzDescription="{{document.comment}}"></nz-card-meta>
+      <ng-template #coverTemplate>
+        <img alt="example" src="../../../../assets/img/pdf.png" width="50%" />
+      </ng-template>
+      <ng-template #actionDownload>
+        <i nz-icon nzType="download" (click)="download(document)"></i>
+      </ng-template>
+      <ng-template #actionEdit>
+        <i nz-icon nzType="edit" (click)="showModal(document)"></i>
+      </ng-template>
+      <ng-template #more>
+        <p style="margin: 0px">Calificación: {{document.grade}}</p>
+      </ng-template>
     </nz-card>
-    <ng-template #coverTemplate>
-      <img alt="example" src="../../../../assets/img/pdf.png" width="50%" />
-    </ng-template>
-    <ng-template #actionDownload>
-      <i nz-icon nzType="download"></i>
-    </ng-template>
-    <ng-template #actionEdit>
-      <i nz-icon nzType="edit" (click)="showModal()"></i>
-
-    </ng-template>
   </ng-container>
 </nz-drawer>
 <nz-modal [(nzVisible)]="isVisible" nzTitle="Calificación" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
   <ng-container *nzModalContent>
     <p>Insertar Calificación (1-100)</p>
-    <input type="text" nz-input placeholder="Insertar Calificación Aquí">
+    <input [(ngModel)]="grade" type="number" nz-input placeholder="Insertar Calificación Aquí">
   </ng-container>
 </nz-modal>

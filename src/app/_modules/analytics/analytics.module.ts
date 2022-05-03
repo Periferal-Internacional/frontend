@@ -22,7 +22,7 @@ import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzInputModule } from 'ng-zorro-antd/input';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [AnalyticsComponent, AnalyticsStatisticComponent, AnalyticsPeopleComponent],
   imports: [
@@ -41,7 +41,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     NzDrawerModule,
     NzCardModule,
     NzModalModule,
-    NzInputModule
+    NzInputModule,
+    FormsModule
   ],
   exports: [AnalyticsComponent, AnalyticsStatisticComponent, AnalyticsPeopleComponent]
 })

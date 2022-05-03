@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { ApiService } from '../../../_services/api.service';
-
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { Router } from '@angular/router';
 @Component({
   selector: 'analytics-people',
   templateUrl: './analytics-people.component.html'
@@ -11,6 +12,15 @@ export class AnalyticsPeopleComponent implements OnInit {
   visible = false;
   expandSet = new Set<number>();
   chosenUser = { "user": { "id": 0, "name": "", "lastName1": "" }, "plant": {} };
+  chosenDocument : any;
+  grade : number = 0;
+  isVisible = false;
+  constructor(
+    private api: ApiService,
+    private msg: NzMessageService,
+    private router: Router
+  ) { }
+
   onExpandChange(id: number, checked: boolean): void {
     if (checked) {
       this.expandSet.add(id);
@@ -18,10 +28,6 @@ export class AnalyticsPeopleComponent implements OnInit {
       this.expandSet.delete(id);
     }
   }
-
-  constructor(
-    private api: ApiService
-  ) { }
 
   ngOnInit(): void {
     this.fetchData();
@@ -39,6 +45,7 @@ export class AnalyticsPeopleComponent implements OnInit {
   }
 
   fetchData() {
+    this.users = [];
     this.api.getPipe("users").subscribe((resp: any) => {
       for (var i = 0; i < resp.length; i++) {
         if (!resp[i].user.admin) {
@@ -47,27 +54,41 @@ export class AnalyticsPeopleComponent implements OnInit {
       }
     });
   }
-  isVisible = false;
-  showModal(): void {
+  
+  showModal(document : any): void {
     this.isVisible = true;
+    this.chosenDocument = document;
+  }
+
+  download(document : any): void {
+    window.open(document.url, '_blank');
   }
 
   handleOk(): void {
-    console.log('Button ok clicked!');
-    this.isVisible = false;
+    let request: any = {
+      "grade": this.grade
+    }
+    this.api.putPipe("deliverables/" + this.chosenDocument.id, request).subscribe((resp: any) => {
+      this.msg.success("Entregable calificado exitosamente");
+      this.grade = 0;
+      this.chosenDocument = {};
+      this.getDeliverables(this.chosenDocument.deliverable_type);
+      this.isVisible = false;
+    } , err => {
+      this.msg.error("El entregable no pudo ser calificado. Inténtalo más tarde");
+    });
   }
 
   handleCancel(): void {
-    console.log('Button cancel clicked!');
+    this.chosenDocument = {};
     this.isVisible = false;
   }
 
 
   getDeliverables(type: string) {
+    this.deliverables = [];
     this.api.getPipe("deliverables?deliverable_type=" + type + "&user_id=" + this.chosenUser.user.id).subscribe((resp: any) => {
-      for (var i = 0; i < resp.length; i++) {
-        this.deliverables.push(resp[i]);
-      }
+        this.deliverables = resp;
     });
   }
 
