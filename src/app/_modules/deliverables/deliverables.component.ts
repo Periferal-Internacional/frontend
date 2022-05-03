@@ -6,7 +6,6 @@ import { HttpEventType, HttpEvent, HttpResponse, HttpClient, HttpRequest } from 
 import { ApiService } from 'src/app/_services/api.service';
 
 
-
 @Component({
   selector: 'deliverables',
   templateUrl: './deliverables.component.html',
@@ -30,8 +29,11 @@ export class DeliverablesComponent implements OnInit {
     if (this.validateForm.valid) {
       this.validateForm.value.user_id = localStorage.getItem('id');
       this.api.postPipe("deliverables", this.validateForm.value).subscribe(resp => {
-        console.log(resp);
-      });
+        this.msg.success("Entregable creado con éxito");
+      }, err => {
+        this.msg.error("Error al crear el entregable");
+      }
+        );
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {
@@ -48,9 +50,9 @@ export class DeliverablesComponent implements OnInit {
       console.log(file, fileList);
     }
     if (status === 'done') {
-      this.msg.success(`${file.name} file uploaded successfully.`);
+      this.msg.success(`${file.name} cargado con éxito.`);
     } else if (status === 'error') {
-      this.msg.error(`${file.name} file upload failed.`);
+      this.msg.error(`${file.name} no fue cargado.`);
     }
   }
 

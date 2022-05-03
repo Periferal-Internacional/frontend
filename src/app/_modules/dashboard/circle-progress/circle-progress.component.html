@@ -1,32 +1,62 @@
 <div class="wrapper">
-    <nz-card class="first" style="width:400;">
+    <nz-card *ngIf="user.admin" class="first" style="width:400;">
         <h2> Supervisores Certificados </h2>
-        <nz-progress [nzPercent]="this.opCertificados" nzType="circle" nzStrokeColor="red" [nzWidth]="200" [nzFormat]="format1"></nz-progress>
+        <nz-progress [nzPercent]="this.supCertificados" nzType="circle" nzStrokeColor="red" [nzWidth]="200" [nzFormat]="format1"></nz-progress>
+    </nz-card>
+    <nz-card *ngIf="!user.admin" class="first" style="width:400;">
+        <h2> Operadores Certificados </h2>
+        <nz-progress [nzPercent]="(user.cap_operators / user.total_operators) * 100" nzType="circle" nzStrokeColor="red" [nzWidth]="200" [nzFormat]="format2"></nz-progress>
     </nz-card>
 
     <nz-card class="second" style="width:380px;">
-        <h2> Avance TWI </h2>
-        <nz-statistic
-                [nzValue]="(this.promJI | number: '1.0-2')!"
-                [nzTitle]="'JI'"
-                [nzPrefix]="prefixTplOne"
-                [nzSuffix]="'%'"
-                [nzValueStyle]="{ color: '#3F8600' }"
-        ></nz-statistic>
-        <nz-statistic
-                [nzValue]="(this.promJR | number: '1.0-2')!"
-                [nzTitle]="'JR'"
-                [nzPrefix]="prefixTplOne"
-                [nzSuffix]="'%'"
-                [nzValueStyle]="{ color: '#3F8600' }"
-        ></nz-statistic>
-        <nz-statistic
-                [nzValue]="(this.promJM | number: '1.0-2')!"
-                [nzTitle]="'JM'"
-                [nzPrefix]="prefixTplOne"
-                [nzSuffix]="'%'"
-                [nzValueStyle]="{ color: '#3F8600' }"
-        ></nz-statistic>
+        <div *ngIf="user.admin">
+            <h2> Avance TWI </h2>
+            <nz-statistic
+                    [nzValue]="(this.promJI | number: '1.0-2')!"
+                    [nzTitle]="'JI'"
+                    [nzPrefix]="prefixTplOne"
+                    [nzSuffix]="'%'"
+                    [nzValueStyle]="{ color: '#3F8600' }"
+            ></nz-statistic>
+            <nz-statistic
+                    [nzValue]="(this.promJR | number: '1.0-2')!"
+                    [nzTitle]="'JR'"
+                    [nzPrefix]="prefixTplOne"
+                    [nzSuffix]="'%'"
+                    [nzValueStyle]="{ color: '#3F8600' }"
+            ></nz-statistic>
+            <nz-statistic
+                    [nzValue]="(this.promJM | number: '1.0-2')!"
+                    [nzTitle]="'JM'"
+                    [nzPrefix]="prefixTplOne"
+                    [nzSuffix]="'%'"
+                    [nzValueStyle]="{ color: '#3F8600' }"
+            ></nz-statistic>
+        </div>
+        <div *ngIf="!user.admin">
+            <h2> Mejoras implementadas </h2>
+            <nz-statistic
+                    [nzValue]="(this.mdpProm | number: '1.0-2')!"
+                    [nzTitle]="'Minutos de Paro'"
+                    [nzPrefix]="prefixTplTwo"
+                    [nzSuffix]="'%'"
+                    [nzValueStyle]="{ color: '#3F8600' }"
+            ></nz-statistic>
+            <nz-statistic
+                    [nzValue]="(this.promJR | number: '1.0-2')!"
+                    [nzTitle]="'Envases desechados'"
+                    [nzPrefix]="prefixTplTwo"
+                    [nzSuffix]="'%'"
+                    [nzValueStyle]="{ color: '#3F8600' }"
+            ></nz-statistic>
+            <nz-statistic
+                    [nzValue]="(this.promJM | number: '1.0-2')!"
+                    [nzTitle]="'Paros por cambio de formato'"
+                    [nzPrefix]="prefixTplTwo"
+                    [nzSuffix]="'%'"
+                    [nzValueStyle]="{ color: '#3F8600' }"
+            ></nz-statistic>
+        </div>
         <ng-template #prefixTplOne><i nz-icon nzType="arrow-up"></i></ng-template>
         <ng-template #prefixTplTwo><i nz-icon nzType="arrow-down"></i></ng-template>
     </nz-card>

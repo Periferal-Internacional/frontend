@@ -15,6 +15,7 @@ export class KPIsComponent implements OnInit {
     this.validateForm = this.fb.group({
       cap_operators: [null, [Validators.required]],
       total_operators: [null, [Validators.required]],
+      improvements: [null, [Validators.required]],
       mdp_b4: [null, [Validators.required]],
       mdp_aft: [null, [Validators.required]],
       waste_b4: [null, [Validators.required]],

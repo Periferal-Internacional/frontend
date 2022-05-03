@@ -57,7 +57,6 @@ export class LeaderboardComponent implements OnInit {
       this.percentages[1] = (this.getTotalXP(topUsers[1]) / 4.5).toFixed(1);
       this.percentages[2] = (this.getTotalXP(topUsers[2]) / 4.5).toFixed(1);
 
-      console.log(topUsers);
       this.users = topUsers;
 
     } else {

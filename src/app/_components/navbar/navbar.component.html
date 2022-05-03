@@ -9,7 +9,7 @@
     <i nz-icon nzType="area-chart" nzTheme="outline"></i>
     <span>Analytics</span>
   </li>
-  <li nz-menu-item routerLink="/videogame">
+  <li nz-menu-item routerLink="/videogame" *ngIf="!user.admin">
     <i nz-icon nzType="desktop" nzTheme="outline"></i>
     <span>Videogame</span>
   </li>

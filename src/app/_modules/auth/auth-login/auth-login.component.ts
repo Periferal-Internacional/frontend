@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService} from '../../../_services/api.service';
 import { Router } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'auth-login',
@@ -18,11 +19,9 @@ export class AuthLoginComponent implements OnInit {
       this.api.loginPipe(this.validateForm.value).subscribe((resp:any) => {
         localStorage.setItem("token", resp.token);
         localStorage.setItem("id", resp.id);
-        this.api.getPipe("users/"+resp.id).subscribe((resp:any) => {
-          localStorage.setItem("user", JSON.stringify(resp));
-          this.tabEmitter.emit("dashboard");
-          this.router.navigateByUrl('/dashboard');
-        });
+        this.setUser(resp.id);
+      }, (err:any) => {
+        this.msg.error("Correo o contraseña incorrectos");
       });
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
@@ -34,8 +33,15 @@ export class AuthLoginComponent implements OnInit {
     }
   }
 
-  constructor(private fb: FormBuilder, private api: ApiService, private router: Router) {}
+  constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private msg: NzMessageService) {}
 
+  setUser(id : string) {
+    this.api.getPipe("users/"+id).subscribe((resp:any) => {
+      localStorage.setItem("user", JSON.stringify(resp));
+      this.tabEmitter.emit("dashboard");
+      this.router.navigateByUrl('/dashboard');
+    });
+  }
   ngOnInit(): void {
     this.validateForm = this.fb.group({
       email: [null, [Validators.required]],
