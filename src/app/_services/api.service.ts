@@ -11,7 +11,7 @@ export class ApiService {
   baseUrl = "https://perinte.herokuapp.com/";
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json',
+      "Accept": "application/json",
     })
   };
   constructor(private http: HttpClient) { }
@@ -20,12 +20,12 @@ export class ApiService {
     return this.http.get(this.baseUrl + path, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
-  putPipe(path:string, request:JSON) {
-    return this.http.put<JSON>(this.baseUrl + path, request, this.httpOptions).pipe(catchError(this.errorHandler));
+  putPipe(path:string, request:any) {
+    return this.http.put<any>(this.baseUrl + path, request, this.httpOptions).pipe(catchError(this.errorHandler));
   }
   
-  postPipe(path:string, request:JSON) {
-    return this.http.post<JSON>(this.baseUrl + path, request, this.httpOptions).pipe(catchError(this.errorHandler));
+  postPipe(path:string, request:any) {
+    return this.http.post<any>(this.baseUrl + path, request, this.httpOptions).pipe(catchError(this.errorHandler));
   }
 
   deletePipe(path:string) {
