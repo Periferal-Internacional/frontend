@@ -27,14 +27,11 @@ export class DeliverablesComponent implements OnInit {
 
   submitForm(): void {
     if (this.validateForm.valid) {
-      this.validateForm.value.user_id = localStorage.getItem('id');
-      // PARA FILEUPLOAD
-      // this.formData.append('user_id', localStorage.getItem('id')!);
-      // this.formData.append('name', this.validateForm.value.name);
-      // this.formData.append('comment', this.validateForm.value.comment);
-      // this.formData.append('deliverable_type', this.validateForm.value.deliverable_type);
-      // this.api.postPipe("deliverables", this.formData).subscribe(resp => {
-      this.api.postPipe("deliverables", this.validateForm.value).subscribe(resp => {
+      this.formData.append('user_id', localStorage.getItem('id')!);
+      this.formData.append('name', this.validateForm.value.name);
+      this.formData.append('comment', this.validateForm.value.comment);
+      this.formData.append('deliverable_type', this.validateForm.value.deliverable_type);
+      this.api.postPipe("deliverables", this.formData).subscribe(resp => {
         this.msg.success("Entregable creado con éxito");
       }, err => {
         this.msg.error("Error al crear el entregable");
