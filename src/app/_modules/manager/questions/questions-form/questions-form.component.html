@@ -24,6 +24,7 @@
         [nzSm]="20"
         [nzOffset]="i === 0 ? 0 : 4"
         nzErrorTip="Por favor ingrese una respuesta"
+        [ngClass]="i > 0 ? 'padded' : 'normal'"
       >
         <input
           class="answer-input"

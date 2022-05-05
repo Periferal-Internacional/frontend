@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
 import { ApiService } from '../../../../_services/api.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'plants-form',
@@ -21,7 +21,8 @@ export class PlantsFormComponent implements OnInit {
   
   constructor(
     private fb : FormBuilder,
-    private api : ApiService
+    private api : ApiService,
+    private msg : NzMessageService
   ) { }
 
   ngOnInit(): void {
@@ -35,7 +36,10 @@ export class PlantsFormComponent implements OnInit {
   submitForm(): void {
     if (this.validateForm.valid) {
       this.api.postPipe("plants", this.validateForm.value).subscribe(resp => {
+        this.msg.success("Planta creada exitosamente");
         this.onSubmit.emit(true);
+      }, err => {
+        this.msg.error("No se pudo crear la planta, inténtelo más tarde");
       });
     } else {
       Object.values(this.validateForm.controls).forEach(control => {

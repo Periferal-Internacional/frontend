@@ -57,18 +57,18 @@
   <ng-container *nzDrawerContent>
     <nz-card *ngFor="let document of deliverables" style="width:300px; margin-bottom: 20px;" [nzCover]="coverTemplate"
       [nzActions]="[actionDownload, actionEdit]" [nzExtra]="more">
-      <nz-card-meta nzTitle="{{document.name}}" nzDescription="{{document.comment}}"></nz-card-meta>
+      <nz-card-meta nzTitle="{{document.deliverable.name}}" nzDescription="{{document.deliverable.comment}}"></nz-card-meta>
       <ng-template #coverTemplate>
         <img alt="example" src="../../../../assets/img/pdf.png" width="50%" />
       </ng-template>
       <ng-template #actionDownload>
-        <i nz-icon nzType="download" (click)="download(document)"></i>
+        <i nz-icon nzType="download" (click)="download(document.deliverable)"></i>
       </ng-template>
       <ng-template #actionEdit>
-        <i nz-icon nzType="edit" (click)="showModal(document)"></i>
+        <i nz-icon nzType="edit" (click)="showModal(document.deliverable)"></i>
       </ng-template>
       <ng-template #more>
-        <p style="margin: 0px">Calificación: {{document.grade}}</p>
+        <p style="margin: 0px">Calificación: {{document.deliverable.grade}}</p>
       </ng-template>
     </nz-card>
   </ng-container>

@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../../../_services/api.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'questions-form',
@@ -16,7 +16,8 @@ export class QuestionsFormComponent implements OnInit {
 
   constructor(
     private fb : FormBuilder,
-    private api : ApiService
+    private api : ApiService,
+    private msg : NzMessageService
   ) { }
 
   ngOnInit(): void {
@@ -68,7 +69,10 @@ export class QuestionsFormComponent implements OnInit {
       }
       this.validateForm.value.right_answer = "probando";
       this.api.postPipe("questions", this.validateForm.value).subscribe(resp => {
+        this.msg.success("Pregunta creada exitosamente");
         this.onSubmit.emit(true);
+      }, err => {
+        this.msg.error("No se pudo crear la pregunta, inténtalo más tarde");
       });
     } else {
       Object.values(this.validateForm.controls).forEach(control => {

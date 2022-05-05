@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { ApiService } from '../../../../_services/api.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'plants-list',
@@ -21,7 +22,8 @@ export class PlantsListComponent implements OnInit, OnChanges {
   }
 
   constructor(
-    private api : ApiService
+    private api : ApiService,
+    private msg : NzMessageService
   ) { }
 
   ngOnInit(): void {
@@ -43,7 +45,10 @@ export class PlantsListComponent implements OnInit, OnChanges {
 
   deletePlant(id : number) {
     this.api.deletePipe("plants/" + id).subscribe(resp => {
+      this.msg.success("Planta eliminada correctamente");
       this.fetchData();
+    }, err => {
+      this.msg.error("No se pudo eliminar la planta, inténtelo más tarde");
     });
   }
 }
