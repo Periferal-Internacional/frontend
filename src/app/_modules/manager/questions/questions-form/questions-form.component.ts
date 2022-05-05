@@ -25,6 +25,7 @@ export class QuestionsFormComponent implements OnInit {
       prompt: [null, [Validators.required]],
       question_type: [null, [Validators.required]],
       xp: [null, [Validators.required]],
+      right_answer: [null, [Validators.required]],
     });
 
     this.addField();
@@ -41,7 +42,6 @@ export class QuestionsFormComponent implements OnInit {
       controlInstance: `answer${id}`
     };
     const index = this.listOfControl.push(control);
-    console.log(this.listOfControl[this.listOfControl.length - 1]);
     this.validateForm.addControl(
       this.listOfControl[index - 1].controlInstance,
       new FormControl(null, Validators.required)
@@ -53,7 +53,6 @@ export class QuestionsFormComponent implements OnInit {
     if (this.listOfControl.length > 1) {
       const index = this.listOfControl.indexOf(i);
       this.listOfControl.splice(index, 1);
-      console.log(this.listOfControl);
       this.validateForm.removeControl(i.controlInstance);
     }
   }
@@ -67,7 +66,8 @@ export class QuestionsFormComponent implements OnInit {
         this.validateForm.value.answers.push(this.validateForm.value[`answer${i}`]);
         delete this.validateForm.value[`answer${i}`];
       }
-      this.validateForm.value.right_answer = "probando";
+      this.validateForm.value.answers = this.shuffle(this.validateForm.value.answers);
+
       this.api.postPipe("questions", this.validateForm.value).subscribe(resp => {
         this.msg.success("Pregunta creada exitosamente");
         this.onSubmit.emit(true);
@@ -84,4 +84,20 @@ export class QuestionsFormComponent implements OnInit {
     }
   }
 
+  shuffle(array : any) {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+    return array;
+  }
 }
