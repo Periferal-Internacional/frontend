@@ -61,7 +61,7 @@ export class AnalyticsPeopleComponent implements OnInit {
   }
 
   download(document : any): void {
-    window.open(document.file_url, '_blank');
+    window.open(document.deliverable.file_url, '_blank');
   }
 
   handleOk(): void {
