@@ -11,6 +11,7 @@ export class PlantsListComponent implements OnInit, OnChanges {
   data : any = [];
   @Input() refetch : Boolean = false;
   @Output() fetched = new EventEmitter<Boolean>();
+  @Output() plantId = new EventEmitter<string>();
   expandSet = new Set<number>();
   
   onExpandChange(id: number, checked: boolean): void {
@@ -50,5 +51,9 @@ export class PlantsListComponent implements OnInit, OnChanges {
     }, err => {
       this.msg.error("No se pudo eliminar la planta, inténtelo más tarde");
     });
+  }
+
+  edit(id : any) {
+    this.plantId.emit(id);
   }
 }

@@ -14,7 +14,7 @@
                 <td>{{ data.city }}</td>
                 <td>{{ data.country}}</td>
                 <td>
-                <a><i nz-icon nzType="edit" nzTheme="outline"></i></a>
+                <a (click)="edit(data.id)"><i nz-icon nzType="edit" nzTheme="outline"></i></a>
                 <nz-divider nzType="vertical"></nz-divider>
                 <a nz-popconfirm
                 nzPopconfirmPlacement="top"

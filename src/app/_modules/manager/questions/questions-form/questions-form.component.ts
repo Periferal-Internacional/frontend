@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../../../_services/api.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -10,25 +10,31 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 })
 export class QuestionsFormComponent implements OnInit {
   @Output() onSubmit = new EventEmitter<Boolean>();
-
+  @Input() id: string = "";
   validateForm!: FormGroup;
+  buttonText = "";
   listOfControl: Array<{ id: number; controlInstance: string }> = [];
 
   constructor(
-    private fb : FormBuilder,
-    private api : ApiService,
-    private msg : NzMessageService
+    private fb: FormBuilder,
+    private api: ApiService,
+    private msg: NzMessageService
   ) { }
 
   ngOnInit(): void {
-    this.validateForm = this.fb.group({
-      prompt: [null, [Validators.required]],
-      question_type: [null, [Validators.required]],
-      xp: [null, [Validators.required]],
-      right_answer: [null, [Validators.required]],
-    });
-
-    this.addField();
+    if (this.id == "") {
+      this.validateForm = this.fb.group({
+        prompt: [null, [Validators.required]],
+        question_type: [null, [Validators.required]],
+        xp: [null, [Validators.required]],
+        right_answer: [null, [Validators.required]],
+      });
+      this.addField();
+      this.buttonText = "Crear pregunta";
+    } else {
+      this.fetchData();
+      this.buttonText = "Editar pregunta";
+    }
   }
 
   addField(e?: MouseEvent): void {
@@ -57,6 +63,21 @@ export class QuestionsFormComponent implements OnInit {
     }
   }
 
+  fetchData() {
+    this.api.getPipe("questions/" + this.id).subscribe((resp: any) => {
+      this.validateForm = this.fb.group({
+        prompt: [resp.prompt, [Validators.required]],
+        question_type: [resp.question_type, [Validators.required]],
+        xp: [resp.xp, [Validators.required]],
+        right_answer: [resp.right_answer, [Validators.required]],
+      });
+      for (var i = 0; i < resp.answers.length; i++) {
+        this.addField();
+        this.validateForm.controls[`answer${i}`].setValue(resp.answers[i]);
+      }
+    });
+  }
+
   submitForm(): void {
     if (this.validateForm.valid) {
       this.validateForm.value.answers = [];
@@ -68,12 +89,22 @@ export class QuestionsFormComponent implements OnInit {
       }
       this.validateForm.value.answers = this.shuffle(this.validateForm.value.answers);
 
-      this.api.postPipe("questions", this.validateForm.value).subscribe(resp => {
-        this.msg.success("Pregunta creada exitosamente");
-        this.onSubmit.emit(true);
-      }, err => {
-        this.msg.error("No se pudo crear la pregunta, inténtalo más tarde");
-      });
+      if (this.id == "") {
+        this.api.postPipe("questions", this.validateForm.value).subscribe(resp => {
+          this.msg.success("Pregunta creada exitosamente");
+          this.onSubmit.emit(true);
+        }, err => {
+          this.msg.error("No se pudo crear la pregunta, inténtalo más tarde");
+        });
+      } else {
+        this.api.putPipe("questions/" + this.id, this.validateForm.value).subscribe(resp => {
+          this.msg.success("Pregunta editada exitosamente");
+          this.onSubmit.emit(true);
+          this.id = "";
+        }, err => {
+          this.msg.error("No se pudo editar la pregunta, inténtalo más tarde");
+        });
+      }
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {
@@ -84,16 +115,16 @@ export class QuestionsFormComponent implements OnInit {
     }
   }
 
-  shuffle(array : any) {
-    let currentIndex = array.length,  randomIndex;
-  
+  shuffle(array: any) {
+    let currentIndex = array.length, randomIndex;
+
     // While there remain elements to shuffle.
     while (currentIndex != 0) {
-  
+
       // Pick a remaining element.
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-  
+
       // And swap it with the current element.
       [array[currentIndex], array[randomIndex]] = [
         array[randomIndex], array[currentIndex]];

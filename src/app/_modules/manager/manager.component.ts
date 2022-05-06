@@ -16,6 +16,9 @@ export class ManagerComponent implements OnInit {
   objType = "";
   refetch = false;
 
+  questionId = "";
+  plantId = "";
+  action = "Crear";
   user : any = localStorage.getItem("user");
 
   constructor() { }
@@ -109,5 +112,20 @@ export class ManagerComponent implements OnInit {
   submitSuccess() {
     this.close();
     this.refetch = true;
+    this.questionId = "";
+    this.plantId = "";
+    this.action = "Crear";
+  }
+
+  setQId(id : string) {
+    this.questionId = id;
+    this.action = "Editar";
+    this.open();
+  }
+
+  setPId(id : string) {
+    this.plantId = id;
+    this.action = "Editar";
+    this.open();
   }
 }

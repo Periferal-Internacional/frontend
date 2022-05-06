@@ -11,6 +11,8 @@ export class QuestionsListComponent implements OnInit {
   data : Array<any> = [];
   @Input() refetch : Boolean = false;
   @Output() fetched = new EventEmitter<Boolean>();
+  @Output() questionId = new EventEmitter<string>();
+
   expandSet = new Set<number>();
   
   onExpandChange(id: number, checked: boolean): void {
@@ -50,5 +52,9 @@ export class QuestionsListComponent implements OnInit {
     }, err => {
       this.msg.error("No se pudo eliminar la pregunta, inténtelo más tarde");
     });
+  }
+
+  edit(id : any) {
+    this.questionId.emit(id);
   }
 }
