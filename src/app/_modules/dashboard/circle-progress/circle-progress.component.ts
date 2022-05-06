@@ -1,13 +1,11 @@
-import { dashCaseToCamelCase } from '@angular/compiler/src/util';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { ApiService } from 'src/app/_services/api.service';
-
 @Component({
   selector: 'circle-progress',
   templateUrl: './circle-progress.component.html',
   styleUrls: ['./circle-progress.component.css']
 })
-export class CircleProgressComponent implements OnInit {
+export class CircleProgressComponent implements OnInit, OnChanges {
   promJI = 0;
   promJR = 0;
   promJM = 0;
@@ -26,7 +24,15 @@ export class CircleProgressComponent implements OnInit {
     this.user = JSON.parse(this.user);
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    this.fetchData();
+  }
+
   fetchData(){
+    this.api.getPipe("users/" + localStorage.getItem('id')).subscribe(resp => {
+      this.user = resp;
+    });
+
     this.api.getPipe("users").subscribe(resp => {
       this.calculate(resp);
     })
@@ -60,6 +66,10 @@ export class CircleProgressComponent implements OnInit {
     this.formatProm = (this.user.format_b4 - this.user.format_aft) / this.user.format_b4 * 100;
   }
 
+  resetFormat() {
+    this.format1 = (): string => this.supCertificados.toFixed(2).toString() + '%';
+    this.format2 = (): string => ((this.user.cap_operators / this.user.total_operators) * 100).toString() + '%';
+  }
   format1 = (): string => this.supCertificados.toFixed(2).toString() + '%';
   format2 = (): string => ((this.user.cap_operators / this.user.total_operators) * 100).toString() + '%';
 }

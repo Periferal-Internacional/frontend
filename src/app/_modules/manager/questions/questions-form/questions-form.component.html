@@ -52,7 +52,13 @@
         </nz-select>
       </nz-form-control>
     </nz-form-item>
-    <nz-form-item >
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="game_over_message">Mensaje de error</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Ingresa un mensaje para la respuesta incorrecta">
+        <input nz-input formControlName="game_over_message" id="game_over_message"/>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="xp">Experiencia</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Ingresa la cantidad de experiencia que la pregunta dará" >
         <input type="number" nz-input formControlName="xp" id="xp" />

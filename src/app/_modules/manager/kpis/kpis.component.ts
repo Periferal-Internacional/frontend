@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/_services/api.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
+
 @Component({
   selector: 'kpis',
   templateUrl: './kpis.component.html',
@@ -8,8 +10,7 @@ import { ApiService } from 'src/app/_services/api.service';
 })
 export class KPIsComponent implements OnInit {
   validateForm!: FormGroup;
-
-  constructor(private fb : FormBuilder, private api : ApiService) { }
+  constructor(private fb: FormBuilder, private api: ApiService, private msg: NzMessageService) { }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
@@ -29,7 +30,9 @@ export class KPIsComponent implements OnInit {
     console.log(this.validateForm.value);
     if (this.validateForm.valid) {
       this.api.putPipe("users/" + localStorage.getItem("id"), this.validateForm.value).subscribe(resp => {
-        console.log(resp);
+        this.msg.success("KPIs actualizados correctamente");
+      }, err => {
+        this.msg.error("Error al actualizar KPIs, inténtelo más tarde");
       });
     } else {
       Object.values(this.validateForm.controls).forEach(control => {

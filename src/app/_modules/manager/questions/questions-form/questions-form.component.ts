@@ -28,6 +28,7 @@ export class QuestionsFormComponent implements OnInit {
         question_type: [null, [Validators.required]],
         xp: [null, [Validators.required]],
         right_answer: [null, [Validators.required]],
+        game_over_message: [null, [Validators.required]],
       });
       this.addField();
       this.buttonText = "Crear pregunta";
@@ -70,6 +71,7 @@ export class QuestionsFormComponent implements OnInit {
         question_type: [resp.question_type, [Validators.required]],
         xp: [resp.xp, [Validators.required]],
         right_answer: [resp.right_answer, [Validators.required]],
+        game_over_message: [resp.game_over_message, [Validators.required]],
       });
       for (var i = 0; i < resp.answers.length; i++) {
         this.addField();
