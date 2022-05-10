@@ -15,7 +15,8 @@ export class ManagerComponent implements OnInit {
   visible = false;
   objType = "";
   refetch = false;
-
+  collapsed = false;
+  
   questionId = "";
   plantId = "";
   action = "Crear";
@@ -127,5 +128,9 @@ export class ManagerComponent implements OnInit {
     this.plantId = id;
     this.action = "Editar";
     this.open();
+  }
+
+  sendEvent() {
+    this.collapsed = !this.collapsed;
   }
 }

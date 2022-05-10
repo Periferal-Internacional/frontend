@@ -6,10 +6,14 @@ import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/co
   encapsulation: ViewEncapsulation.None
 })
 export class VideogameComponent implements OnInit, AfterViewInit {
-
+  collapsed = false;
   constructor() { }
 
   async ngOnInit() {
+  }
+
+  sendEvent() {
+    this.collapsed = !this.collapsed;
   }
 
   async ngAfterViewInit() {

@@ -1,6 +1,6 @@
 <nz-layout>
-    <nz-sider nzCollapsible nzWidth="200px">
-        <navbar></navbar>
+    <nz-sider nzCollapsible nzWidth="200px" (nzCollapsedChange)="sendEvent()">
+        <navbar [isCollapsed]="collapsed"></navbar>
     </nz-sider>
     <nz-layout>
         <nz-content style="margin-left: 10px;">

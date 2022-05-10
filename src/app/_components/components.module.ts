@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
     , NzListModule
     , NzProgressModule
     , NzBreadCrumbModule
+    , NzLayoutModule
   ],
   exports: [
     NavbarComponent, 

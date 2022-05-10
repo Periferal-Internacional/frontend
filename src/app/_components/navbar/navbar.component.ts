@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,11 +6,11 @@ import { Router } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnChanges {
   user : any = localStorage.getItem('user');
-
+  @Input() isCollapsed = false;
   @Output() tabEmitter = new EventEmitter<any>();
-
+  imgSize = 180;
   constructor(
     private router : Router
   ) { }
@@ -19,8 +19,13 @@ export class NavbarComponent implements OnInit {
     this.user = JSON.parse(this.user);
   }
 
-  isCollapsed = false;
-
+  ngOnChanges() : void {
+    if (this.isCollapsed) {
+      this.imgSize = 60;
+    } else {
+      this.imgSize = 180;
+    }
+  }
   toggleCollapsed(): void {
     this.isCollapsed = !this.isCollapsed;
   }

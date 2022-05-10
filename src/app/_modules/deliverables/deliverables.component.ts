@@ -12,7 +12,7 @@ import { ApiService } from 'src/app/_services/api.service';
   styleUrls: ['./deliverables.component.css']
 })
 export class DeliverablesComponent implements OnInit {
-
+  collapsed = false;
   validateForm!: FormGroup;
   formData = new FormData();
   constructor(private msg: NzMessageService, private fb: FormBuilder, private api: ApiService, private http: HttpClient) { }
@@ -25,6 +25,10 @@ export class DeliverablesComponent implements OnInit {
     });
   }
 
+  sendEvent() {
+    this.collapsed = !this.collapsed;
+  }
+  
   submitForm(): void {
     if (this.validateForm.valid) {
       this.formData.append('user_id', localStorage.getItem('id')!);
