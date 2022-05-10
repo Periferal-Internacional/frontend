@@ -26,6 +26,7 @@ export class NavbarComponent implements OnInit, OnChanges {
       this.imgSize = 180;
     }
   }
+
   toggleCollapsed(): void {
     this.isCollapsed = !this.isCollapsed;
   }
@@ -38,4 +39,3 @@ export class NavbarComponent implements OnInit, OnChanges {
     this.router.navigate(['/auth']);
   }
 }
-
