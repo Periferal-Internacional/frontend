@@ -10,9 +10,17 @@ import { NzMessageService } from 'ng-zorro-antd/message';
   styleUrls: ['./auth-login.component.css']
 })
 export class AuthLoginComponent implements OnInit {
-
   @Output() tabEmitter = new EventEmitter<any>();
   validateForm!: FormGroup;
+
+  constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private msg: NzMessageService) {}
+
+  ngOnInit(): void {
+    this.validateForm = this.fb.group({
+      email: [null, [Validators.required]],
+      password: [null, [Validators.required]],
+    });
+  }
 
   submitForm(): void {
     if (this.validateForm.valid) {
@@ -33,20 +41,12 @@ export class AuthLoginComponent implements OnInit {
     }
   }
 
-  constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private msg: NzMessageService) {}
 
   setUser(id : string) {
     this.api.getPipe("users/"+id).subscribe((resp:any) => {
       localStorage.setItem("user", JSON.stringify(resp));
       this.tabEmitter.emit("dashboard");
       this.router.navigateByUrl('/dashboard');
-    });
-  }
-  ngOnInit(): void {
-    this.validateForm = this.fb.group({
-      email: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      remember: [true]
     });
   }
 }

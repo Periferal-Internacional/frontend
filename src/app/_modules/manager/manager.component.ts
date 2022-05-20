@@ -104,6 +104,7 @@ export class ManagerComponent implements OnInit {
 
   close() {
     this.visible = false;
+    this.reset();
   }
 
   changeStatus() {
@@ -113,9 +114,7 @@ export class ManagerComponent implements OnInit {
   submitSuccess() {
     this.close();
     this.refetch = true;
-    this.questionId = "";
-    this.plantId = "";
-    this.action = "Crear";
+    this.reset();
   }
 
   setQId(id : string) {
@@ -128,6 +127,12 @@ export class ManagerComponent implements OnInit {
     this.plantId = id;
     this.action = "Editar";
     this.open();
+  }
+
+  reset() {
+    this.questionId = "";
+    this.plantId = "";
+    this.action = "Crear";
   }
 
   sendEvent() {
