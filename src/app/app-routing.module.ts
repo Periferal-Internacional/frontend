@@ -35,7 +35,7 @@ const routes: Routes = [
     path: 'manager', component: ManagerComponent,
     children: [
       {
-        path: 'kpis', component: KPIsComponent
+        path: 'kpis', component: ManagerComponent
       }, 
       {
         path: 'questions', component: ManagerComponent
