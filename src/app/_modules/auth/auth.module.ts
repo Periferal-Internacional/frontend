@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { RouterModule } from '@angular/router';
+import { ComponentsModule } from 'src/app/_components/components.module';
 
 @NgModule({
   declarations: [AuthComponent, AuthLoginComponent],
@@ -19,7 +20,8 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     NzButtonModule,
     NzIconModule,
-    RouterModule
+    RouterModule,
+    ComponentsModule
   ],
   exports: [
     AuthComponent,

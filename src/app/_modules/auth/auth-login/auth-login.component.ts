@@ -11,6 +11,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 })
 export class AuthLoginComponent implements OnInit {
   @Output() tabEmitter = new EventEmitter<any>();
+  @Output() loadingEmitter = new EventEmitter<Boolean>();
   validateForm!: FormGroup;
 
   constructor(private fb: FormBuilder, private api: ApiService, private router: Router, private msg: NzMessageService) {}
@@ -24,12 +25,14 @@ export class AuthLoginComponent implements OnInit {
 
   submitForm(): void {
     if (this.validateForm.valid) {
+      this.loadingEmitter.emit(true);
       this.api.loginPipe(this.validateForm.value).subscribe((resp:any) => {
         localStorage.setItem("token", resp.token);
         localStorage.setItem("id", resp.id);
         this.setUser(resp.id);
       }, (err:any) => {
         this.msg.error("Correo o contraseña incorrectos");
+        this.loadingEmitter.emit(false);
       });
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
@@ -46,6 +49,7 @@ export class AuthLoginComponent implements OnInit {
     this.api.getPipe("users/"+id).subscribe((resp:any) => {
       localStorage.setItem("user", JSON.stringify(resp));
       this.tabEmitter.emit("dashboard");
+      this.loadingEmitter.emit(false);
       this.router.navigateByUrl('/dashboard');
     });
   }

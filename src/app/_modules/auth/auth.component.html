@@ -1,7 +1,7 @@
 <div class="cuerpo">
     <img class="imagen" src="assets/img/Arca_Continental_Logo.png" alt="Logo Arca" style="display: flex; justify-content: center" >
     <div class="bg_login">
-        <auth-login style="display: flex; justify-content: center" (tabEmitter)="emitEvent()"></auth-login>
+        <auth-login style="display: flex; justify-content: center" (tabEmitter)="emitEvent()" (loadingEmitter)="update()"></auth-login>
     </div>
-    <h1 style="height: 300px;"></h1>
+    <loading *ngIf="loading"></loading>
 </div>

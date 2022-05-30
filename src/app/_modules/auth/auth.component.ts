@@ -7,7 +7,7 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
   tabEvent = new EventEmitter();
-
+  loading = false;
   constructor() { }
 
   ngOnInit(): void {
@@ -17,4 +17,11 @@ export class AuthComponent implements OnInit {
     this.tabEvent.emit();
   }
 
+  update() {
+    if (this.loading) {
+      this.loading = false;
+    } else {
+      this.loading = true;
+    }
+  }
 }

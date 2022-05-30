@@ -1,11 +1,11 @@
 <div class="wrapper">
     <nz-card *ngIf="user.admin" class="first" style="width:400;">
         <h2> Supervisores Certificados </h2>
-        <nz-progress [nzPercent]="this.supCertificados" nzType="circle" nzStrokeColor="red" [nzWidth]="200" [nzFormat]="format1"></nz-progress>
+        <nz-progress [nzPercent]="this.supCertificados" nzType="circle" nzStrokeColor="rgb(195,31,57)" [nzWidth]="200" [nzFormat]="format1"></nz-progress>
     </nz-card>
     <nz-card *ngIf="!user.admin" class="first" style="width:400;">
         <h2> Operadores Certificados </h2>
-        <nz-progress [nzPercent]="(user.cap_operators / user.total_operators) * 100" nzType="circle" nzStrokeColor="red" [nzWidth]="200" [nzFormat]="format2"></nz-progress>
+        <nz-progress [nzPercent]="(user.cap_operators / user.total_operators) * 100" nzType="circle" nzStrokeColor="rgb(195,31,57)" [nzWidth]="200" [nzFormat]="format2"></nz-progress>
     </nz-card>
 
     <nz-card class="second" style="width:380px;">

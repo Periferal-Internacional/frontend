@@ -70,13 +70,4 @@ export class LeaderboardComponent implements OnInit {
   getTotalXP(user : any) {
     return user.user.xp_jr + user.user.xp_jm + user.user.xp_ji;
   }
-
-  getColor(i : number) {
-    if(this.percentages[i] < 50) {
-      return "red";
-    } else {
-      return "primary";
-    }
-  }
-
 }

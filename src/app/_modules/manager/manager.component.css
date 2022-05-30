@@ -8,3 +8,6 @@ ul button {
     float: right;
     margin: 5px;
 }
+nz-layout {
+    min-height: 100vh;
+}

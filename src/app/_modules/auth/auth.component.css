@@ -1,5 +1,6 @@
 .cuerpo{
     background-image: url("src/assets/img/Diapositiva1.jpg");
+    height: 100vh;
 }
 
 .bg_login{
