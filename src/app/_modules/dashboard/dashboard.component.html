@@ -1,8 +1,18 @@
-<breadcrumb></breadcrumb>
-<div class="inner-content">
-  <h1 style="font-size: 50px;"> Hola, Sandra! </h1>
-  <circle-progress></circle-progress>
-  <nz-card style="margin: 20px">
-    <leaderboard></leaderboard>
-  </nz-card>
-</div>
+<nz-layout>
+  <nz-sider nzCollapsible nzWidth="200px" (nzCollapsedChange)="sendEvent()">
+    <navbar [isCollapsed]="collapsed"></navbar>
+  </nz-sider>
+  <nz-layout>
+    <nz-content style="margin-left: 10px;">
+      <breadcrumb></breadcrumb>
+      <div class="inner-content">
+        <h1 style="font-size: 50px;"> Hola, {{user.name}} {{user.lastName1}} </h1>
+        <circle-progress></circle-progress>
+        <nz-card style="margin: 20px">
+          <leaderboard></leaderboard>
+        </nz-card>
+      </div>
+    </nz-content>
+    <nz-footer>Periférica Internacional ©2022 Implementado con Angular</nz-footer>
+  </nz-layout>
+</nz-layout>

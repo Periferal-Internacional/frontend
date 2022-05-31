@@ -3,3 +3,11 @@
     background-color: #F7F7F7;
     min-height: 360px;
 }
+
+ul button {
+    float: right;
+    margin: 5px;
+}
+nz-layout {
+    min-height: 100vh;
+}

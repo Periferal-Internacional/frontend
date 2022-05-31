@@ -10,12 +10,15 @@ import { RouterModule } from '@angular/router';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     LeaderboardComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule
@@ -26,10 +29,12 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
     , NzListModule
     , NzProgressModule
     , NzBreadCrumbModule
+    , NzLayoutModule
   ],
   exports: [
     NavbarComponent, 
     LeaderboardComponent,
-    BreadcrumbComponent]
+    BreadcrumbComponent,
+    LoadingComponent]
 })
 export class ComponentsModule { }

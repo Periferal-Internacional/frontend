@@ -1,4 +1,28 @@
-<breadcrumb></breadcrumb>
-<div class="inner-content">
-  <h1> Videogame</h1>
-</div>
+<nz-layout>
+  <nz-sider nzCollapsible nzWidth="200px" (nzCollapsedChange)="sendEvent()">
+    <navbar [isCollapsed]="collapsed"></navbar>
+  </nz-sider>
+  <nz-layout>
+    <nz-content>
+      <div class="inner-content">
+        <!-- <h1> Videogame</h1> -->
+        <div id="unity-container" class="unity-desktop" style="margin-left: 100px;">
+          <canvas id="unity-canvas" width=960 height=600></canvas>
+          <div id="unity-loading-bar">
+            <div id="unity-logo"></div>
+            <div id="unity-progress-bar-empty">
+              <div id="unity-progress-bar-full"></div>
+            </div>
+          </div>
+          <div id="unity-warning"> </div>
+          <div id="unity-footer">
+            <div id="unity-webgl-logo"></div>
+            <div id="unity-fullscreen-button"></div>
+            <div id="unity-build-title">Juego TWI</div>
+          </div>
+        </div>
+      </div>      
+    </nz-content>
+    <nz-footer>Periférica Internacional ©2022 Implementado con Angular</nz-footer>
+  </nz-layout>
+</nz-layout>

@@ -1,0 +1,102 @@
+<nz-card>
+    <form nz-form nzLayout="vertical" [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+        <div nz-row>
+            <nz-form-item nz-col nzSpan="11">
+                <nz-form-label nzFor="cap_operators" nzRequired>Operarios capacitados</nz-form-label>
+                <nz-form-control nzErrorTip="Por favor ingrese un número de operadores capacitados">
+                    <nz-input-group>
+                        <input type="number" nz-input formControlName="cap_operators"
+                            placeholder="Número de operadores capacitados" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nz-col nzSpan="11">
+                <nz-form-label nzFor="total_operators" nzRequired>Operarios totales</nz-form-label>
+                <nz-form-control nzErrorTip="Por favor ingrese el número total de operadores bajo su supervisión">
+                    <nz-input-group>
+                        <input type="number" nz-input formControlName="total_operators"
+                            placeholder="Número de operadores" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-row> 
+            <nz-form-item nz-col nzSpan="23">
+                <nz-form-label nzFor="improvements" nzRequired>Mejoras implementadas
+                </nz-form-label>
+                <nz-form-control
+                    nzErrorTip="Por favor ingrese el número de mejoras implementadas">
+                    <nz-input-group>
+                        <input type="number" nz-input formControlName="improvements"
+                            placeholder="Cantidad de mejoras implementadas" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-row>
+            <nz-form-item nz-col nzSpan="11">
+                <nz-form-label nzFor="mdp_b4" nzRequired>Minutos de Paro (mins/mes) - ANTES de TWI</nz-form-label>
+                <nz-form-control nzErrorTip="Por favor ingrese el número de minutos de paro por mes antes de TWI">
+                    <nz-input-group>
+                        <input type="number" nz-input formControlName="mdp_b4" placeholder="Número de minutos por mes" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nz-col nzSpan="11">
+                <nz-form-label nzFor="mdp_aft" nzRequired>Minutos de Paro (mins/mes) - DESPUÉS de TWI</nz-form-label>
+                <nz-form-control nzErrorTip="Por favor ingrese el número de minutos de paro por mes después de TWI">
+                    <nz-input-group>
+                        <input type="number" nz-input formControlName="mdp_aft" placeholder="Número de minutos por mes" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-row>
+            <nz-form-item nz-col nzSpan="11">
+                <nz-form-label nzFor="waste_b4" nzRequired>Envases desechados (tarimas/mes) - ANTES de TWI
+                </nz-form-label>
+                <nz-form-control nzErrorTip="Por favor ingrese el número de tarimas desechadas por mes antes de TWI">
+                    <nz-input-group>
+                        <input type="number" nz-input formControlName="waste_b4"
+                            placeholder="Número de tarimas desechadas por mes" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nz-col nzSpan="11">
+                <nz-form-label nzFor="waste_aft" nzRequired>Envases desechados (tarimas/mes) - DESPUÉS de TWI
+                </nz-form-label>
+                <nz-form-control nzErrorTip="Por favor ingrese el número de tarimas desechadas por mes después de TWI">
+                    <nz-input-group>
+                        <input type="number" nz-input formControlName="waste_aft"
+                            placeholder="Número de tarimas desechadas por mes" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-row>
+            <nz-form-item nz-col nzSpan="11">
+                <nz-form-label nzFor="format_b4" nzRequired>Minutos por cambio de formato (mins/mes) - ANTES de TWI
+                </nz-form-label>
+                <nz-form-control
+                    nzErrorTip="Por favor ingrese el número de minutos por cambio de formato por mes antes de TWI">
+                    <nz-input-group>
+                        <input type="number" nz-input formControlName="format_b4"
+                            placeholder="Número de minutos por mes" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nz-col nzSpan="11">
+                <nz-form-label nzFor="format_aft" nzRequired>Minutos por cambio de formato (mins/mes) - DESPUÉS de TWI
+                </nz-form-label>
+                <nz-form-control
+                    nzErrorTip="Por favor ingrese el número de minutos por cambio de formato por mes después de TWI">
+                    <nz-input-group>
+                        <input type="number" nz-input formControlName="format_aft"
+                            placeholder="Número de minutos por mes" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Enviar</button>
+    </form>
+</nz-card>

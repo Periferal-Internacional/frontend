@@ -18,8 +18,11 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
-
-
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [AnalyticsComponent, AnalyticsStatisticComponent, AnalyticsPeopleComponent],
   imports: [
@@ -34,7 +37,12 @@ import { NzProgressModule } from 'ng-zorro-antd/progress';
     NzGridModule,
     NzTableModule,
     NzDividerModule,
-    NzProgressModule
+    NzProgressModule,
+    NzDrawerModule,
+    NzCardModule,
+    NzModalModule,
+    NzInputModule,
+    FormsModule
   ],
   exports: [AnalyticsComponent, AnalyticsStatisticComponent, AnalyticsPeopleComponent]
 })

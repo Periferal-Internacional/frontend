@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { ApiService } from '../../../../_services/api.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'questions-list',
@@ -8,6 +9,9 @@ import { ApiService } from '../../../../_services/api.service';
 })
 export class QuestionsListComponent implements OnInit {
   data : Array<any> = [];
+  @Input() refetch : Boolean = false;
+  @Output() fetched = new EventEmitter<Boolean>();
+  @Output() questionId = new EventEmitter<string>();
 
   expandSet = new Set<number>();
   
@@ -20,11 +24,19 @@ export class QuestionsListComponent implements OnInit {
   }
   
   constructor(
-    private api : ApiService
+    private api : ApiService,
+    private msg : NzMessageService
   ) { }
 
   ngOnInit(): void {
     this.fetchData();
+  }
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.refetch.currentValue == true) {
+      this.fetchData();
+      this.fetched.emit(true);
+    }
   }
   
   fetchData() {
@@ -35,7 +47,14 @@ export class QuestionsListComponent implements OnInit {
 
   deleteQuestion(id : number) {
     this.api.deletePipe("questions/" + id).subscribe(resp => {
+      this.msg.success("Pregunta eliminada correctamente");
       this.fetchData();
+    }, err => {
+      this.msg.error("No se pudo eliminar la pregunta, inténtelo más tarde");
     });
+  }
+
+  edit(id : any) {
+    this.questionId.emit(id);
   }
 }

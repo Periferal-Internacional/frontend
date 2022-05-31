@@ -6,15 +6,18 @@ import { ApiService } from '../../_services/api.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+  user : any = localStorage.getItem("user");
+  collapsed = false;
   constructor(
     private api : ApiService
   ) { }
 
-  ngOnInit(): void {
+
+  sendEvent() {
+    this.collapsed = !this.collapsed;
   }
 
-  fetchUser() {
-    
+  ngOnInit(): void {
+    this.user = JSON.parse(this.user);
   }
 }

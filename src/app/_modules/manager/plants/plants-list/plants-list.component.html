@@ -1,6 +1,7 @@
 <nz-table #plants *ngIf="data" [nzData]="data">
     <thead>
       <tr>
+        <th>Nombre</th>
         <th>Ciudad</th>
         <th>País</th>
         <th>Modificar</th>
@@ -9,10 +10,11 @@
     <tbody>
         <ng-container *ngFor="let data of plants.data">
             <tr>
+                <td>{{ data.name }}</td>
                 <td>{{ data.city }}</td>
                 <td>{{ data.country}}</td>
                 <td>
-                <a><i nz-icon nzType="edit" nzTheme="outline"></i></a>
+                <a (click)="edit(data.id)"><i nz-icon nzType="edit" nzTheme="outline"></i></a>
                 <nz-divider nzType="vertical"></nz-divider>
                 <a nz-popconfirm
                 nzPopconfirmPlacement="top"

@@ -1,9 +1,9 @@
 
     <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
       <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your username!">
+        <nz-form-control nzErrorTip="Please input your email!">
           <nz-input-group nzPrefixIcon="user">
-            <input type="text" nz-input formControlName="userName" placeholder="Username" onclick="othername();"/>
+            <input type="text" nz-input formControlName="email" placeholder="Email"/>
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
@@ -24,7 +24,7 @@
           <a class="login-form-forgot" style="color: white;">Forgot Password</a>
         </div>
       </div>
-        <button (click)="submitForm()"  *ngClass="{disabled: !this.validateForm.valid}" nz-button class="login-form-button login-form-margin" [nzType]="'primary'" >Log in</button>
+        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" >Log in</button>
 
       Or
       <a style="color: white;">register now!</a>

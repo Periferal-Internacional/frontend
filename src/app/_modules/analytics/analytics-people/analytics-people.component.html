@@ -1,27 +1,81 @@
-    <nz-table *ngIf="users" #basicTable [nzData]="users">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Posición</th>
-          <th>Planta</th>
-          <th>Entregas</th>
-          <th>Nivel Video Juego</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of users; index as i">
-          <td>{{user.user.name}} {{user.user.lastName1}}</td>
-          <td>{{user.user.position}}</td>
-          <td>{{user.plant.city}}</td>
-          <td>
-            <a>JI</a>
-            <nz-divider nzType="vertical"></nz-divider>
-            <a>JR</a>
-            <nz-divider nzType="vertical"></nz-divider>
-            <a>JM</a>
-          </td>
-          <td>10</td>
-        </tr>
-      </tbody>
-    </nz-table>
-  
+<nz-table *ngIf="users" #basicTable [nzData]="users">
+  <thead>
+    <tr>
+      <th>Progreso</th>
+      <th>Nombre</th>
+      <th>Posición</th>
+      <th>Planta</th>
+      <th>Operarios Cert.</th>
+      <th>Mejoras</th>
+      <th>Entregas</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let user of users; index as i">
+      <tr>
+        <td [nzExpand]="expandSet.has(user.user.id)" (nzExpandChange)="onExpandChange(user.user.id, $event)"></td>
+        <td>{{user.user.name}} {{user.user.lastName1}}</td>
+        <td>{{user.user.position}}</td>
+        <td>{{user.plant.name}}</td>
+        <td>{{(user.user.cap_operators / user.user.total_operators) * 100}}%</td>
+        <td>{{user.user.improvements}}</td>
+        <td>
+          <a (click)="open('JI', user)">JI</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a (click)="open('JR', user)">JR</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a (click)="open('JM', user)">JM</a>
+        </td>
+      </tr>
+      <tr [nzExpand]="expandSet.has(user.user.id)">
+        <div style="display:flex; justify-content: space-between;">
+          <div style="display: inline">
+            <small>Job Instructions</small>
+            <nz-progress [nzPercent]="(user.user.xp_ji / 150 * 100).toFixed(0)"
+              nzStrokeColor="{{getColor(user.user.xp_ji)}}"></nz-progress>
+            <small>Job Methods</small>
+            <nz-progress [nzPercent]="(user.user.xp_jm / 150 * 100).toFixed(0)"
+              nzStrokeColor="{{getColor(user.user.xp_jm)}}"></nz-progress>
+            <small>Job Relations</small>
+            <nz-progress [nzPercent]="(user.user.xp_jr / 150 * 100).toFixed(0)"
+              nzStrokeColor="{{getColor(user.user.xp_jr)}}"></nz-progress>
+          </div>
+          <div style="display: inline; margin-top: 10px;">
+            <h3>Mejoras:</h3>
+            <p>Minutos de Paro (mins/mes) - <strong>{{((user.user.mdp_b4 - user.user.mdp_aft) / user.user.mdp_b4) * 100}}%</strong></p>
+            <p>Envases desechados (tarimas/mes) - <strong>{{((user.user.waste_b4 - user.user.waste_aft) / user.user.waste_b4) * 100}}%</strong></p>
+            <p>Minutos por cambio de formato (mins/mes) - <strong>{{((user.user.format_b4 - user.user.format_aft)  / user.user.format_b4) * 100}}%</strong></p>
+          </div>
+        </div>
+      </tr>
+    </ng-container>
+  </tbody>
+</nz-table>
+
+<nz-drawer [nzClosable]="false" [nzVisible]="visible" nzPlacement="right"
+  nzTitle="Entregables de {{chosenUser.user.name}} {{chosenUser.user.lastName1}}" (nzOnClose)="close()" [nzWidth]="350">
+  <ng-container *nzDrawerContent>
+    <nz-card *ngFor="let document of deliverables" style="width:300px; margin-bottom: 20px;" [nzCover]="coverTemplate"
+      [nzActions]="[actionDownload, actionEdit]" [nzExtra]="more">
+      <nz-card-meta nzTitle="{{document.deliverable.name}}" nzDescription="{{document.deliverable.comment}}"></nz-card-meta>
+      <ng-template #coverTemplate>
+        <img alt="example" src="../../../../assets/img/pdf.png" width="50%" />
+      </ng-template>
+      <ng-template #actionDownload>
+        <i nz-icon nzType="download" (click)="download(document.deliverable)"></i>
+      </ng-template>
+      <ng-template #actionEdit>
+        <i nz-icon nzType="edit" (click)="showModal(document.deliverable)"></i>
+      </ng-template>
+      <ng-template #more>
+        <p style="margin: 0px">Calificación: {{document.deliverable.grade}}</p>
+      </ng-template>
+    </nz-card>
+  </ng-container>
+</nz-drawer>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Calificación" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <ng-container *nzModalContent>
+    <p>Insertar Calificación (1-100)</p>
+    <input [(ngModel)]="grade" type="number" nz-input placeholder="Insertar Calificación Aquí">
+  </ng-container>
+</nz-modal>

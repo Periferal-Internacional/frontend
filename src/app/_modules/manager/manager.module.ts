@@ -6,10 +6,20 @@ import { PlantsModule } from './plants/plants.module';
 import { ComponentsModule } from '../../_components/components.module';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { RouterModule } from '@angular/router';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { KPIsComponent } from './kpis/kpis.component';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzCardModule } from 'ng-zorro-antd/card';
 
 @NgModule({
   declarations: [
-    ManagerComponent
+    ManagerComponent,
+    KPIsComponent
   ],
   imports: [
     RouterModule,
@@ -17,8 +27,17 @@ import { RouterModule } from '@angular/router';
     QuestionsModule,
     PlantsModule,
     ComponentsModule,
-    NzMenuModule
+    NzMenuModule,
+    NzButtonModule,
+    NzIconModule,
+    NzDrawerModule,
+    NzLayoutModule,
+    NzFormModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NzInputModule,
+    NzCardModule
   ],
-  exports: [ManagerComponent]
+  exports: [ManagerComponent, KPIsComponent]
 })
 export class ManagerModule { }

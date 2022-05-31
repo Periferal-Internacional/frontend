@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { QuestionsComponent } from './questions.component';
 import { QuestionsFormComponent } from './questions-form/questions-form.component';
 import { QuestionsListComponent } from './questions-list/questions-list.component';
 
@@ -9,9 +8,14 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+
 @NgModule({
   declarations: [
-    QuestionsComponent,
     QuestionsFormComponent,
     QuestionsListComponent
   ],
@@ -20,10 +24,15 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
     NzTableModule,
     NzDividerModule,
     NzIconModule,
-    NzPopconfirmModule
+    NzPopconfirmModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NzFormModule,
+    NzInputModule,
+    NzSelectModule,
+    NzButtonModule
   ],
   exports: [
-    QuestionsComponent,
     QuestionsFormComponent,
     QuestionsListComponent
   ]

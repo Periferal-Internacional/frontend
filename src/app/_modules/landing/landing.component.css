@@ -1,0 +1,27 @@
+.boton2 {
+    text-align: center;
+    position: relative;
+    width: fit-content;
+    float: right;
+    padding: 10px;
+    bottom: 60px;
+}
+
+.imagen{
+    margin: auto;
+    width: 10%;
+    position: relative;
+    bottom: 475px;
+    
+}
+
+.head{
+    position: relative;
+    left: 7%;
+}
+
+.cuerpo {
+    background-image: url("src/assets/img/imagen_facebook.jpg");
+    background-size: 1300px;
+    background-position: center;
+}

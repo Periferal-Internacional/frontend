@@ -1,21 +1,62 @@
-<breadcrumb></breadcrumb>
-<p>deliverables works!</p>
-<div class="dropzone" dropzone (hovered)="toggleHover($event)" (dropped)="onDrop($event)" [class.hovering]="isHovering">
-
-  <h3> Arrastra los Archivos aqui</h3>
-
-  <div>
-      <label>
-          <input type="file" (change)="onDrop($event.target.files)">
-      </label>
-  </div>
-</div>
-
-<div *ngIf="files.length > 0">
-  Archivos
-  <hr>
-</div>
-
-<div *ngFor="let file of files">
-  <upload-task [file]="file"></upload-task>
-</div>
+<nz-layout>
+  <nz-sider nzCollapsible nzWidth="200px" (nzCollapsedChange)="sendEvent()">
+    <navbar [isCollapsed]="collapsed"></navbar>
+  </nz-sider>
+  <nz-layout>
+    <nz-content style="margin-left: 10px;">
+      <breadcrumb></breadcrumb>
+      <div class="inner-content">
+        <h1> Deliverables</h1>
+        <nz-card>
+          <form nz-form nzLayout="vertical" [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+            <nz-form-item>
+              <nz-form-label nzFor="name" nzRequired>Nombre del documento</nz-form-label>
+              <nz-form-control nzErrorTip="Por favor ingrese un nombre al entregable">
+                <nz-input-group>
+                  <input type="text" nz-input formControlName="name" placeholder="Nombre del documento" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label nzFor="comment" nzRequired>Comentarios</nz-form-label>
+              <nz-form-control>
+                <nz-input-group>
+                  <input type="textarea" nz-input formControlName="comment" placeholder="Comentarios" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label nzFor="deliverable_type" nzRequired>Tipo de Entregable</nz-form-label>
+              <nz-form-control [nzSpan]="12" nzErrorTip="Por favor eliga un tipo de entregable">
+                <nz-select
+                  id="deliverable_type"
+                  formControlName="deliverable_type"
+                  nzPlaceHolder="Seleccione el tipo de entregable"
+                >
+                  <nz-option nzValue="JI" nzLabel="Job Instructions"></nz-option>
+                  <nz-option nzValue="JM" nzLabel="Job Methods"></nz-option>
+                  <nz-option nzValue="JR" nzLabel="Job Relations"></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+      
+            
+          </form>
+          <nz-upload nzType="drag" [nzMultiple]="true" nzAction="https://perinte.herokuapp.com/upload"[nzCustomRequest]="upload"
+            (nzChange)="handleChange($event)">
+            <p class="ant-upload-drag-icon">
+              <i nz-icon nzType="inbox"></i>
+            </p>
+            <p class="ant-upload-text">Click or drag file to this area to upload</p>
+            <p class="ant-upload-hint">
+              Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files
+            </p>
+          </nz-upload>
+          <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" (click)="submitForm()">Enviar</button>
+        </nz-card>
+        <h1 style="height: 80px;"></h1>
+      </div>
+    </nz-content>
+    <nz-footer>Periférica Internacional ©2022 Implementado con Angular</nz-footer>
+  </nz-layout>
+</nz-layout>

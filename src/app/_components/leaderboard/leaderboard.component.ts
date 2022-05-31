@@ -1,3 +1,4 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/_services/api.service';
 
@@ -9,7 +10,9 @@ import { ApiService } from 'src/app/_services/api.service';
 export class LeaderboardComponent implements OnInit {
   tabs : string[] = [];
   users : any[] = [];
-  percentages: number[] = [100, 75, 64, 47, 15];
+  usuarios : any[] = [];
+  percentages: any[] = [];
+  xpLista: number[] = [];
   constructor(
     private api : ApiService
   ) { }
@@ -39,22 +42,32 @@ export class LeaderboardComponent implements OnInit {
 
   parse(information : any) {
     if (this.tabs[0] == "Dashboard") {
-      for (var i = 0; i < 3; i++) {
-        this.users.push(information[i]);
+      var topUsers = [information[0], information[1], information[2]];
+      for (var i = 3; i < information.length; i++) {
+        if(this.getTotalXP(information[i]) > this.getTotalXP(topUsers[0])){
+          topUsers[0] = information[i];
+        }else if(this.getTotalXP(information[i]) > this.getTotalXP(topUsers[1]) && this.getTotalXP(information[i]) <= this.getTotalXP(topUsers[0])){
+          topUsers[1] = information[i];
+        }else if(this.getTotalXP(information[i]) > this.getTotalXP(topUsers[2]) && this.getTotalXP(information[i]) <= this.getTotalXP(topUsers[1])){
+          topUsers[2] = information[i];
+        } 
       }
+
+      this.percentages[0] = (this.getTotalXP(topUsers[0]) / 4.5).toFixed(1);
+      this.percentages[1] = (this.getTotalXP(topUsers[1]) / 4.5).toFixed(1);
+      this.percentages[2] = (this.getTotalXP(topUsers[2]) / 4.5).toFixed(1);
+
+      this.users = topUsers;
+
     } else {
       for  (var i = 0; i < information.length; i++) {
         this.users.push(information[i]);
       }
     }
+    
   }
 
-  getColor(i : number) {
-    if(this.percentages[i] < 50) {
-      return "red";
-    } else {
-      return "primary";
-    }
+  getTotalXP(user : any) {
+    return user.user.xp_jr + user.user.xp_jm + user.user.xp_ji;
   }
-
 }

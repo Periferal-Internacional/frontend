@@ -5,4 +5,9 @@ import { Component } from '@angular/core';
   templateUrl: './analytics.component.html',
   styleUrls: ['./analytics.component.css']
 })
-export class AnalyticsComponent {}
+export class AnalyticsComponent {
+  collapsed = false;
+  sendEvent() {
+    this.collapsed = !this.collapsed;
+  }
+}

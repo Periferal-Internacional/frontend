@@ -1,20 +1,40 @@
-<breadcrumb [inputTabs]="inputTabs"></breadcrumb>
-<div class="inner-content">
-  <h1> Manager</h1>
-  <ul nz-menu nzMode="horizontal">
-    <li nz-menu-item routerLink="/manager/questions" (click)="updateTab('Questions')">
-      <i nz-icon nzType="form"></i>
-      Preguntas
-    </li>
-    <li nz-menu-item routerLink="/manager/plants" (click)="updateTab('Plants')">
-      <i nz-icon nzType="control"></i>
-      Plantas
-    </li>
-  </ul>
+<nz-layout>
+  <nz-sider nzCollapsible nzWidth="200px" (nzCollapsedChange)="sendEvent()">
+    <navbar [isCollapsed]="collapsed"></navbar>
+  </nz-sider>
+  <nz-layout>
+    <nz-content style="margin-left: 10px;">
+      <breadcrumb [inputTabs]="inputTabs"></breadcrumb>
+      <div class="inner-content">
+        <h1> Manager</h1>
+        <ul nz-menu nzMode="horizontal">
+          <li nz-menu-item routerLink="/manager/questions" (click)="updateTab('Questions')" *ngIf="user.admin">
+            <i nz-icon nzType="form"></i>
+            Preguntas
+          </li>
+          <li nz-menu-item routerLink="/manager/plants" (click)="updateTab('Plants')" *ngIf="user.admin">
+            <i nz-icon nzType="control"></i>
+            Plantas
+          </li>
+          <li nz-menu-item routerLink="/manager/kpis" (click)="updateTab('KPIs')" *ngIf="!user.admin">
+            <i nz-icon nzType="line-chart"></i>
+            KPIs
+          </li>
 
-  <questions *ngIf="qShow"></questions>
-  
-  <plants *ngIf="pShow"></plants>
-  <div style="margin: 30%;"></div>
-  <!-- <plants></plants> -->
-</div>
+          <button nz-button nzType="primary" (click)="open()" nzShape="circle"><i nz-icon nzType="plus" *ngIf="user.admin"></i></button>
+        </ul>
+        <questions-list *ngIf="qShow" [refetch]="refetch" (fetched)="changeStatus()" (questionId)="setQId($event)" ></questions-list>
+        <plants-list *ngIf="pShow" [refetch]="refetch" (fetched)="changeStatus()" (plantId)="setPId($event)"></plants-list>
+        <kpis *ngIf="kShow"></kpis>
+        <nz-drawer [nzClosable]="false" [nzVisible]="visible" nzPlacement="right" nzTitle="{{action}} {{ objType }}"
+          (nzOnClose)="close()" [nzWidth]="600">
+          <ng-container *nzDrawerContent>
+            <questions-form *ngIf="qShow" (onSubmit)="submitSuccess()" [id]="questionId"> </questions-form>
+            <plants-form *ngIf="pShow" (onSubmit)="submitSuccess()" [id]="plantId"></plants-form>
+          </ng-container>
+        </nz-drawer>
+      </div>
+    </nz-content>
+    <nz-footer>Periférica Internacional ©2022 Implementado con Angular</nz-footer>
+  </nz-layout>
+</nz-layout>
